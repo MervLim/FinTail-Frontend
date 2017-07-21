@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+#navBar {
+  background-color: #EFEFEF;
+  height: 100px;
+  color: #545454;
+  font-family: 'Roboto Slab';
+  font-size: 20px;
+  display: table;
+  width: 100%;
+
+}
+
+#navBar p {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#navBar span {
+  color: red;
+  font-weight: bolder;
+}
+
+.dashboard {
+  width: 90%;
+  border: 1px solid #E1DDDC;
+  margin: 10px auto;
+  height: 300px;
+  box-shadow: 0px 24px 50px -30px rgba(0,0,0,0.75);
+
+}
