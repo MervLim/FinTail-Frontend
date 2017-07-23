@@ -10,10 +10,10 @@ export class stockview extends Component {
     super(props);
     console.log(this.props.result);
 
-this.state = {
-  stocks: []
-}
+  this.state = {
+    stocks: []
   }
+}
 
 
 
