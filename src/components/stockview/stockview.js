@@ -13,7 +13,15 @@ export class stockview extends Component {
   }
 
 renderNews(){
-    
+   let news = this.props.news[0];
+   if(typeof(news) == "undefined") {
+        return
+   } else {
+   return (
+     <div>
+       {news['articles']}
+     </div>)
+ }
 }
 
 
@@ -37,6 +45,7 @@ renderStock(){
     return (
       <div>
         {this.renderStock()}
+        {this.renderNews()}
       </div>
     );
   }
