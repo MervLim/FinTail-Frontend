@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Search from '../search/search';
 import Stockview from '../stockview/stockview';
 import Networth from '../networth/networth';
-import Chart from '../chart';
+import Chart from '../chart/chart';
 import './dashboard.css'
 
 
@@ -19,7 +19,7 @@ export class dashboard extends Component {
       <div className='dashboard'>
       <Stockview />
       <Networth />
-      <Chart/>
+      <Chart />
       </div>
 
       </div>
