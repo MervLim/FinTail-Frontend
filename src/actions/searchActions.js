@@ -45,10 +45,20 @@ export const getStock = (searchTerm) => {
 }
 
 export const getNews = (searchTerm) => {
+
+  // const username = "42f36889b38b7b775f37ee2e859908ea";
+  // const password = "5062df3517649e48a878d8ac6046dfcc";
+  //const auth = username + ":" + password;
+
   console.log('im inside getNews actions')
   return (dispatch) => {
     console.log('im in axios dispatch');
-    axios.get(' https://newsapi.org/v1/articles?source=bloomberg&sortBy=latest&apiKey=54c0d4afc52b4332b33762e86b37052d')
+    axios.get('https://api.intrinio.com/news?identifier=' +searchTerm,{
+      auth: {
+        username:"42f36889b38b7b775f37ee2e859908ea",
+        password: "5062df3517649e48a878d8ac6046dfcc"
+      }
+    })
       .then( (response) => {
         let news= [];
         news.push(response.data);
