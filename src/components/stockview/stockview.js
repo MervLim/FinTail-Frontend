@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { getStock }from '../../actions/searchActions';
+import { getStock ,getNews }from '../../actions/searchActions';
 
 import axios from 'axios';
 
@@ -33,8 +33,7 @@ renderStock(){
 }
 
   render() {
-    console.log(this.props.result[0])
-    console.log(this.props.)
+    console.log(this.props.result[0]);
     return (
       <div>
         {this.renderStock()}
@@ -45,8 +44,8 @@ renderStock(){
 
 const mapStateToProps = (state) => {
   return{
-    result: state.JSONresult.result
-    newsData: state.NEWSData.newsData
+    result: state.JSONresult.result,
+    news: state.NEWSData.news
   };
 }
 
