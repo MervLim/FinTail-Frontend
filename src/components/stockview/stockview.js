@@ -32,11 +32,31 @@ renderStock(){
  }
 }
 
+
+renderNews(){
+  if (this.props.newsResult.length <= 0) {
+    return(
+      <div></div>
+    )
+  } else {
+    return this.props.newsResult[0].data.map((item) => {
+      return (
+        <div id ='newsFeed'>
+          <p><a href = {item.url}>{item.title}</a></p>
+        </div>
+
+      )
+    });
+  }
+
+
+}
   render() {
 
     return (
       <div className='stockList'>
         {this.renderStock()}
+        {this.renderNews()}
       </div>
     );
   }
@@ -44,7 +64,8 @@ renderStock(){
 
 const mapStateToProps = (state) => {
   return{
-    result: state.JSONresult.result
+    result: state.JSONresult.result,
+    newsResult: state.NEWSData.news
   };
 }
 

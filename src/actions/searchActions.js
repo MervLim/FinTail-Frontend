@@ -59,7 +59,6 @@ export const getNews = (searchTerm) => {
       .then( (response) => {
         let news= [];
         news.push(response.data);
-        console.log(news);
         dispatch(displayNewsResult(news));
       })
       .catch((error)=> {
