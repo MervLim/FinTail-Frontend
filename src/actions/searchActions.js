@@ -66,7 +66,7 @@ export const getNews = (searchTerm) => {
         dispatch(displayNewsResult(news));
       })
       .catch((error)=> {
-        console.error("AJAX: Could not get news @ NewsAPI")
+        console.error("AJAX: Could not get news @ IntrinoAPI")
 
       });
   };
