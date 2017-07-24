@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './search.css';
-import { getStock }from '../../actions/searchActions';
+import { getStock, searchTerm }from '../../actions/searchActions';
 import { connect } from 'react-redux';
 
 export class search extends Component {
@@ -8,7 +8,7 @@ export class search extends Component {
     super(props);
 
     this.state = {
-      searchTerm: ''
+      searchTerm: {}
     }
 
     // this.props.changeSearchTerm(this.state.searchTerm);
@@ -17,6 +17,7 @@ export class search extends Component {
   onClick = (e) => {
     let result = this.state.searchTerm;
     this.props.changeSearchTerm(result);
+    this.props.getStock(result);
     // dispatch get stock
     // update store state
     // re-render
@@ -48,7 +49,8 @@ export class search extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeSearchTerm: (text) => { dispatch(getStock(text)); },
+    changeSearchTerm: (text) => { dispatch(searchTerm(text)); },
+    getStock: (text) => { dispatch(getStock(text)); },
   }
 }
 
