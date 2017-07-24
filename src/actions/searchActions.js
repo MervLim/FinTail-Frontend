@@ -52,11 +52,11 @@ export const getNews = (searchTerm) => {
       .then( (response) => {
         let news= [];
         news.push(response.data);
-        // console.log(stock);
+        console.log(news);
         dispatch(displayNewsResult(news));
       })
       .catch((error)=> {
-        console.error("AJAX: Could not get stock @ AlphaVantage")
+        console.error("AJAX: Could not get news @ NewsAPI")
 
       });
   };

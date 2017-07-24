@@ -12,6 +12,10 @@ export class stockview extends Component {
 
   }
 
+renderNews(){
+    
+}
+
 
 renderStock(){
   var currentdate = new Date();
@@ -30,6 +34,7 @@ renderStock(){
 
   render() {
     console.log(this.props.result[0])
+    console.log(this.props.)
     return (
       <div>
         {this.renderStock()}
@@ -41,6 +46,7 @@ renderStock(){
 const mapStateToProps = (state) => {
   return{
     result: state.JSONresult.result
+    newsData: state.NEWSData.newsData
   };
 }
 

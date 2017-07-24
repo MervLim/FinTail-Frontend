@@ -6,6 +6,7 @@ export let initStore = () => {
 
   const reducer = combineReducers( {
       JSONresult: searchReducer
+      NEWSData: searchReducer
   });
 
   const store = createStore( reducer,
