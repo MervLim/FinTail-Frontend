@@ -24,8 +24,6 @@ export const displayNewsResult = (news) => {
   };
 }
 
-
-
 export const getStock = (searchTerm) => {
   console.log('im inside getStock actions')
   return (dispatch) => {
@@ -44,16 +42,15 @@ export const getStock = (searchTerm) => {
   };
 }
 
+
+
+
+
 export const getNews = (searchTerm) => {
-
-  // const username = "42f36889b38b7b775f37ee2e859908ea";
-  // const password = "5062df3517649e48a878d8ac6046dfcc";
-  //const auth = username + ":" + password;
-
   console.log('im inside getNews actions')
   return (dispatch) => {
     console.log('im in axios dispatch');
-    axios.get('https://api.intrinio.com/news?identifier=' +searchTerm,{
+    axios.get('https://api.intrinio.com/news?identifier=' + searchTerm,{
       auth: {
         username:"42f36889b38b7b775f37ee2e859908ea",
         password: "5062df3517649e48a878d8ac6046dfcc"
@@ -66,7 +63,7 @@ export const getNews = (searchTerm) => {
         dispatch(displayNewsResult(news));
       })
       .catch((error)=> {
-        console.error("AJAX: Could not get news @ IntrinoAPI")
+        console.error("AJAX: Could not get news @ NewsAPI")
 
       });
   };

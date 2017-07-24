@@ -1,0 +1,14 @@
+.stockList {
+  width: 90%;
+  border: 1px solid #E1DDDC;
+  margin: 10px auto;
+  height: 300px;
+  box-shadow: 0px 24px 50px -30px rgba(0,0,0,0.75);
+}
+
+#line-chart {
+  position: absolute;
+  width: 30%;
+
+
+}

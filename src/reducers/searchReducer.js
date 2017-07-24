@@ -18,22 +18,23 @@ const searchReducer = (state = initialState, action) =>{
 
 
     case 'DISPLAY_RESULT':
-    console.log('im inside DISPLAY_RESULT reducer!')
+    console.log('im inside UPDATE_RESULT reducer!')
       return {
         ...state,
         result: action.result
 
       }
     break;
-    
-     case 'DISPLAY_NEWS':
-     console.log('im inside DISPLAY_NEWS reducer!')
-      return {
-        ...state,
-        news: action.news
 
-      }
-    break;
+    case 'DISPLAY_NEWS':
+   console.log('im inside DISPLAY_NEWS reducer!')
+    return {
+      ...state,
+      news: action.news
+
+    }
+  break;
+
 
 
 

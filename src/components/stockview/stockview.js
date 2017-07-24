@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { getStock ,getNews }from '../../actions/searchActions';
+import { getStock }from '../../actions/searchActions';
+import './stocksview.css';
 
 import axios from 'axios';
 
@@ -12,40 +13,30 @@ export class stockview extends Component {
 
   }
 
-renderNews(){
-   let news = this.props.news[0];
-   if(typeof(news) == "undefined") {
-        return
-   } else {
-   return (
-     <div>
-       {news['articles']}
-     </div>)
- }
-}
-
 
 renderStock(){
-  var currentdate = new Date();
-  var datetime =  currentdate.getFullYear() + '-' + (((currentdate.getMonth()+1)< 10)?"0":"") + '-' +  (((currentdate.getDate() < 10)?"0":""));
-  console.log(datetime);
+  // var currentdate = new Date();
+  // var datetime =  currentdate.getFullYear() + '-' + (currentdate.getMonth()+1) + '-' +  currentdate.getDate();
+  // console.log(datetime);
 
   let stock = this.props.result[0];
   if(typeof(stock) == "undefined") {
     return
   } else {
-  return (<div>
-    {stock['Time Series (Daily)'][datetime]['2. high']}
+  return (<div id='line-chart'>
+    <p>{stock['Meta Data']['2. Symbol']}</p>
+    <p>{stock['Time Series (Daily)']['2017-07-21']['2. high']}</p>
+    <p>{stock['Time Series (Daily)']['2017-07-21']['1. open']}</p>
+    <p>{stock['Time Series (Daily)']['2017-07-21']['3. low']}</p>
   </div>)
  }
 }
 
   render() {
-    console.log(this.props.result[0]);
+
     return (
-      <div>
-        {this.renderStock()},
-        {this.renderNews()}
+      <div className='stockList'>
+        {this.renderStock()}
       </div>
     );
   }
@@ -53,8 +44,7 @@ renderStock(){
 
 const mapStateToProps = (state) => {
   return{
-    result: state.JSONresult.result,
-    news: state.NEWSData.news
+    result: state.JSONresult.result
   };
 }
 
