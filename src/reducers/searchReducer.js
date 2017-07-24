@@ -1,5 +1,6 @@
 const initialState = {
-  searchTerm: " "
+  searchTerm: " ",
+  result : []
 }
 
 const searchReducer = (state = initialState, action) =>{
@@ -10,6 +11,16 @@ const searchReducer = (state = initialState, action) =>{
       return {
         ...state,
         searchTerm: action.searchTerm
+
+      }
+    break;
+
+
+    case 'DISPLAY_RESULT':
+    console.log('im inside UPDATE_RESULT reducer!')
+      return {
+        ...state,
+        result: action.result
 
       }
     break;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './search.css';
-import { getStock }from '../../actions/searchActions';
+import { getStock, searchTerm }from '../../actions/searchActions';
 import { connect } from 'react-redux';
 
 export class search extends Component {
@@ -8,18 +8,16 @@ export class search extends Component {
     super(props);
 
     this.state = {
-      searchTerm: '',
-      stock :[]
+      searchTerm: {}
     }
 
     // this.props.changeSearchTerm(this.state.searchTerm);
 
   }
   onClick = (e) => {
-    e.preventDefault();
-    console.log("Getting Stock JSON",this.state.stock)
     let result = this.state.searchTerm;
-    let newSearch = this.props.changeSearchTerm(result);
+    this.props.changeSearchTerm(result);
+    this.props.getStock(result);
     // dispatch get stock
     // update store state
     // re-render
@@ -27,13 +25,7 @@ export class search extends Component {
     // does searchR.stock exist?
     // if it does, show graph
     // if not, show something else
-    if (result) {
-        this.props.getStock(newSearch);
-        console.log("New Search" + newSearch );
-    }
   }
-
-
 
   onChange = (e) => {
     let result = e.target.value;
@@ -53,16 +45,12 @@ export class search extends Component {
       </div>);
   }
 }
-const mapStateToProps = (state) => {
-  return{
-    result: state.searchR.searchTerm
-  };
-}
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeSearchTerm: (text) => { dispatch(getStock(text)); },
-    getStock:(stock)=>{dispatch(getStock(stock))}
+    changeSearchTerm: (text) => { dispatch(searchTerm(text)); },
+    getStock: (text) => { dispatch(getStock(text)); },
   }
 }
 
