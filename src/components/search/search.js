@@ -55,8 +55,7 @@ export class search extends Component {
 }
 const mapStateToProps = (state) => {
   return{
-    result: state.searchR.searchTerm,
-    JSONresult: state.searchR.stock
+    result: state.searchR.searchTerm
   };
 }
 

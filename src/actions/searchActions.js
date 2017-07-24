@@ -13,7 +13,7 @@ export const searchTerm = (searchTerm) => {
 export const getStock = (searchTerm) => {
   console.log('im inside getStock actions')
   return (dispatch) => {
-    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+searchTerm+'&apikey=O4S8KZ7QADUOH6CX')
+    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=O4S8KZ7QADUOH6CX')
       .then( (response) => {
         const stock = response.data;
         //debugger
