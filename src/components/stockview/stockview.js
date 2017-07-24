@@ -44,7 +44,7 @@ renderStock(){
     console.log(this.props.result[0]);
     return (
       <div>
-        {this.renderStock()}
+        {this.renderStock()},
         {this.renderNews()}
       </div>
     );

@@ -45,7 +45,7 @@ export const getStock = (searchTerm) => {
 }
 
 export const getNews = (searchTerm) => {
-  console.log('im inside getStock actions')
+  console.log('im inside getNews actions')
   return (dispatch) => {
     console.log('im in axios dispatch');
     axios.get(' https://newsapi.org/v1/articles?source=bloomberg&sortBy=latest&apiKey=54c0d4afc52b4332b33762e86b37052d')
