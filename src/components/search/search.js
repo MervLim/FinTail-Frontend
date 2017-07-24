@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import './search.css';
-import { getStock, searchTerm }from '../../actions/searchActions';
+import { getStock, searchTerm, getNews }from '../../actions/searchActions';
 import { connect } from 'react-redux';
 
 export class search extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      searchTerm: {}
-    }
+
 
     // this.props.changeSearchTerm(this.state.searchTerm);
 
@@ -18,6 +16,8 @@ export class search extends Component {
     let result = this.state.searchTerm;
     this.props.changeSearchTerm(result);
     this.props.getStock(result);
+    this.props.getNews(result);
+
     // dispatch get stock
     // update store state
     // re-render
@@ -28,7 +28,7 @@ export class search extends Component {
   }
 
   onChange = (e) => {
-    let result = e.target.value;
+    let result = e.target.value.toUpperCase();
     this.setState({
       searchTerm: result,
     })
@@ -51,6 +51,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeSearchTerm: (text) => { dispatch(searchTerm(text)); },
     getStock: (text) => { dispatch(getStock(text)); },
+    getNews: (text) => {dispatch(getNews(text)); }
   }
 }
 

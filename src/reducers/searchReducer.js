@@ -1,6 +1,7 @@
 const initialState = {
   searchTerm: " ",
-  result : []
+  result : [],
+  news: []
 }
 
 const searchReducer = (state = initialState, action) =>{
@@ -24,6 +25,15 @@ const searchReducer = (state = initialState, action) =>{
 
       }
     break;
+
+    case 'DISPLAY_NEWS':
+   console.log('im inside DISPLAY_NEWS reducer!')
+    return {
+      ...state,
+      news: action.news
+
+    }
+  break;
 
 
 
