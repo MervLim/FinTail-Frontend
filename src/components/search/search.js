@@ -6,11 +6,6 @@ import { connect } from 'react-redux';
 export class search extends Component {
   constructor(props) {
     super(props);
-
-
-
-    // this.props.changeSearchTerm(this.state.searchTerm);
-
   }
   onClick = (e) => {
     let result = this.state.searchTerm;
