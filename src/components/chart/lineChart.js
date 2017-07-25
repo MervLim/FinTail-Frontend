@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import './lineChart.css';
+
 
 
 export class lineChart extends Component {

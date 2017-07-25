@@ -78,9 +78,9 @@ renderNews(){
 
     return (
       <div className='stockView'>
-        <LineChart />
+        <div id='line-chart'><LineChart/></div>
         <div id='newsFeed'>{this.renderNews()}</div>
-        <Doughnut />
+        <div id ='doughnut-chart'><Doughnut/></div>
       </div>
     );
   }
