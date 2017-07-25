@@ -4,7 +4,7 @@ import LineChart from '../chart/lineChart';
 import './stocksview.css';
 import {Bar, Line} from 'react-chartjs-2';
 import moment from 'moment';
-
+import Doughnut from '../chart/doughnutChart';
 import axios from 'axios';
 
 
@@ -80,6 +80,7 @@ renderNews(){
       <div className='stockView'>
         <LineChart />
         <div id='newsFeed'>{this.renderNews()}</div>
+        <Doughnut />
       </div>
     );
   }

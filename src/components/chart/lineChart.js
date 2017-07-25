@@ -9,6 +9,11 @@ export class lineChart extends Component {
     super(props);
   }
 
+
+
+
+
+
   renderStock(){
     let today = new Date();
     const dd = today.getDate()-1;
@@ -47,7 +52,6 @@ export class lineChart extends Component {
     </div>)
   }
   }
-
 
   render() {
     return (<div>{this.renderStock()}</div>);

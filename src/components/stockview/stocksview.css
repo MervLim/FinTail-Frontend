@@ -17,3 +17,9 @@
   overflow: scroll;
   height: 290px;
 }
+
+#doughnut-chart {
+  width: 30%;
+  display: inline-block;
+  height: 300px;
+}
