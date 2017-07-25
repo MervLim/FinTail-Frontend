@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { getStock }from '../../actions/searchActions';
+import LineChart from '../chart/lineChart';
 import './stocksview.css';
+import {Bar, Line} from 'react-chartjs-2';
+import moment from 'moment';
 
 import axios from 'axios';
 
@@ -14,23 +16,44 @@ export class stockview extends Component {
   }
 
 
-renderStock(){
-  // var currentdate = new Date();
-  // var datetime =  currentdate.getFullYear() + '-' + (currentdate.getMonth()+1) + '-' +  currentdate.getDate();
-  // console.log(datetime);
-
-  let stock = this.props.result[0];
-  if(typeof(stock) == "undefined") {
-    return
-  } else {
-  return (<div id='line-chart'>
-    <p>{stock['Meta Data']['2. Symbol']}</p>
-    <p>{stock['Time Series (Daily)']['2017-07-21']['2. high']}</p>
-    <p>{stock['Time Series (Daily)']['2017-07-21']['1. open']}</p>
-    <p>{stock['Time Series (Daily)']['2017-07-21']['3. low']}</p>
-  </div>)
- }
-}
+// renderStock(){
+//   let today = new Date();
+//   const dd = today.getDate()-1;
+//   const mm = today.getMonth()+1; //January is 0!
+//   const yyyy = today.getFullYear();
+//   const dateCombine = yyyy+'-'+mm+'-'+dd;
+//   let todayFormat =  moment(dateCombine).format('YYYY-MM-DD');
+//
+//   const hours = today.getHours();
+//   const mins = today.getMinutes();
+//   const currentTime = String(hours) + String(mins);
+//   const newCurrentTime = parseInt(currentTime);
+//   console.log(typeof(newCurrentTime));
+//
+//
+//
+//
+//   console.log(currentTime);
+//   let stock = this.props.result[0];
+//   if(typeof(stock) == "undefined") {
+//     return
+//   } else if (typeof(stock) !== "undefined" && newCurrentTime > 430 && newCurrentTime < 2130){
+//
+//   return (<div id='line-chart'>
+//     <p>{stock['Meta Data']['2. Symbol']}</p>
+//     <p>{stock['Time Series (1min)'][todayFormat + ' 16:00:00']['2. high']}</p>
+//     <p>{stock['Time Series (1min)'][todayFormat + ' 16:00:00']['1. open']}</p>
+//     <p>{stock['Time Series (1min)'][todayFormat + ' 16:00:00']['3. low']}</p>
+//   </div>)
+// } else {
+//   return (<div id='line-chart'>
+//     <p>{stock['Meta Data']['2. Symbol']}</p>
+//     <p>{stock['Time Series (1min)'][todayFormat + currentTime]['2. high']}</p>
+//     <p>{stock['Time Series (1min)'][todayFormat + currentTime]['1. open']}</p>
+//     <p>{stock['Time Series (1min)'][todayFormat + currentTime]['3. low']}</p>
+//   </div>)
+// }
+// }
 
 
 renderNews(){
@@ -41,8 +64,8 @@ renderNews(){
   } else {
     return this.props.newsResult[0].data.map((item) => {
       return (
-        <div id ='newsFeed'>
-          <p><a href = {item.url}>{item.title}</a></p>
+        <div>
+          <a href = {item.url}>{item.title}</a>
         </div>
 
       )
@@ -54,9 +77,9 @@ renderNews(){
   render() {
 
     return (
-      <div className='stockList'>
-        {this.renderStock()}
-        {this.renderNews()}
+      <div className='stockView'>
+        <LineChart />
+        <div id='newsFeed'>{this.renderNews()}</div>
       </div>
     );
   }
