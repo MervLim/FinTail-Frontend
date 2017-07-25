@@ -4,9 +4,7 @@ import { getStock, searchTerm, getNews }from '../../actions/searchActions';
 import { connect } from 'react-redux';
 
 export class search extends Component {
-  constructor(props) {
-    super(props);
-  }
+  
   onClick = (e) => {
     let result = this.state.searchTerm;
     this.props.changeSearchTerm(result);

@@ -1,4 +1,4 @@
-.stockList {
+.stockView {
   width: 90%;
   border: 1px solid #E1DDDC;
   margin: 10px auto;
@@ -6,7 +6,14 @@
   box-shadow: 0px 24px 50px -30px rgba(0,0,0,0.75);
 }
 
-#line-chart {
+/*#line-chart {
   position: absolute;
   width: 30%;
+}*/
+
+#newsFeed {
+  width: 30%;
+  display: inline-block;
+  overflow: scroll;
+  height: 290px;
 }

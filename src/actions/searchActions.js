@@ -28,7 +28,7 @@ export const getStock = (searchTerm) => {
   console.log('im inside getStock actions')
   return (dispatch) => {
     console.log('im in axios dispatch');
-    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+searchTerm+'&apikey=O4S8KZ7QADUOH6CX')
+    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=O4S8KZ7QADUOH6CX')
       .then( (response) => {
         let stock = [];
         stock.push(response.data);
