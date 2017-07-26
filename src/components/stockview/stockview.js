@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import LineChart from '../chart/lineChart';
-import './stocksview.css';
+import DoughnutChart from '../chart/doughnutChart';
+import './stockview.css';
 import {Bar, Line} from 'react-chartjs-2';
 import moment from 'moment';
 
@@ -66,6 +67,7 @@ renderNews(){
       return (
         <div>
           <a href = {item.url}>{item.title}</a>
+          <p>{item.summary}</p>
         </div>
 
       )
@@ -78,8 +80,11 @@ renderNews(){
 
     return (
       <div className='stockView'>
-        <LineChart />
-        <div id='newsFeed'>{this.renderNews()}</div>
+        <div id='line-chart'><LineChart /></div>
+        <div id='newsFeed'>
+        {this.renderNews()}
+        </div>
+        <div id='doughnutChart'><DoughnutChart /></div>
       </div>
     );
   }

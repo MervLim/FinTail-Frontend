@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+
+.stockView {
+  width: 98%;
+  border: 1px solid #E1DDDC;
+  margin: 10px auto;
+  height: auto;
+  box-shadow: 0px 24px 50px -30px rgba(0,0,0,0.75);
+}
+
+#line-chart {
+  display: inline-block;
+  width: 98%;
+  height: auto;
+  padding: 0 2px;
+  text-align: left;
+  margin: 0 auto;
+}
+
+#newsFeed {
+  width: 40%;
+  display: inline-block;
+  overflow: scroll;
+  height: 350px;
+  vertical-align: top;
+  font-family: 'Roboto Slab';
+  font-size: 14px;
+  text-align: left;
+}
+
+#newsFeed a {
+  text-decoration: none;
+
+}
+
+
+#doughnutChart {
+  width: 40%;
+  height: 50%;
+  display: inline-block;
+}

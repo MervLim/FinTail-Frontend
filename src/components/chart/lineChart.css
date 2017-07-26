@@ -1,4 +1,4 @@
-#line-chart {
-  position: absolute;
-  width: 30%;
+.title {
+  font-family: 'Roboto + Slab';
+  font-color: grey;
 }
