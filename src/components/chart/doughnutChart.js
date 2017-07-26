@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import {Doughnut} from 'react-chartjs-2';
-
+import EntryPriceModal from '../modal/entryPriceModal';
 
 export class doughnutChart extends Component {
   constructor(props) {
@@ -13,33 +13,36 @@ export class doughnutChart extends Component {
     //Set Date and Time
     let today = new Date();
     const dd = today.getDate()-1;
+    const dd2 = today.getDate();
     const mm = today.getMonth()+1; //January is 0!
     const yyyy = today.getFullYear();
     const dateCombine = yyyy+'-'+mm+'-'+dd;
+    const dateCombine2 = yyyy+'-'+mm+'-'+dd2;
+
     let todayFormat =  moment(dateCombine).format('YYYY-MM-DD');
+    let todayFormat2 =  moment(dateCombine2).format('YYYY-MM-DD');
 
     const hours = today.getHours();
     const mins = today.getMinutes();
     const currentTime = String(hours) + String(mins);
-    const newCurrentTime = parseInt(currentTime);
-    console.log(typeof(newCurrentTime));
+    const currentTimeTwoFourFormat = String(hours - 12) + ':' + String(mins);
+    const intCurrentTime = parseInt(currentTime);
+
 
 /*
-CHECK FOR MARKET OPENING 
-
+CHECK FOR MARKET OPENING
 */
     console.log(currentTime);
     let stock = this.props.result[0];
-  //  let closedMarket = stock['Time Series (1min)'][todayFormat + ' 16:00:00']['1. open'];
     if(typeof(stock) == "undefined") {
       return
-    } else if (typeof(stock) !== "undefined" && newCurrentTime > 430 && newCurrentTime < 2130){
+    } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
     //Display Doughnut Chart  If Market is Closed.
     let chartData={
       labels: ["High", "Low"],
        datasets: [{
-              data:[         
-                 stock['Time Series (1min)'][todayFormat + '16:00:00']['1. open'],
+              data:[
+                 stock['Time Series (1min)'][todayFormat + ' 16:00:00']['1. open'],
                  stock['Time Series (1min)'][todayFormat  + ' 16:00:00']['3. low']
               ],
               backgroundColor: [
@@ -58,13 +61,14 @@ CHECK FOR MARKET OPENING
 
     return (
       <div>
-         <Doughnut data={chartData} />
+        <EntryPriceModal />
+        <Doughnut data={chartData} />
       </div>
     )
     } else {
       let chartData={
        datasets: [{
-              data:[         
+              data:[
                  stock['Time Series (1min)'][todayFormat + currentTime]['2. high'],
                  stock['Time Series (1min)'][todayFormat  + currentTime]['3. low']
               ],
@@ -84,6 +88,7 @@ CHECK FOR MARKET OPENING
     return (
     //Display Doughnut Chart If Market is Open
       <div>
+        <EntryPriceModal />
         <Doughnut data={chartData} />
       </div>
     )
