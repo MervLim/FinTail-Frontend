@@ -42,7 +42,12 @@ const searchReducer = (state = initialState, action) =>{
     case 'STORE_DASHBOARD':
     console.log('im inside STORE DASHBOARD reducer!')
       return {
-        ...state
+        ...state,
+        result: [
+          ...state.result,
+          action.news,
+          action.result
+        ]
 
       }
 

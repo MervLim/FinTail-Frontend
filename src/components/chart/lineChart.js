@@ -31,9 +31,6 @@ export class lineChart extends Component {
 
     let stock = this.props.result;
 
-    console.log(intCurrentTime);
-    console.log(hours);
-    console.log(todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00');
 
 
     if(typeof(stock) == "undefined") {
@@ -41,7 +38,8 @@ export class lineChart extends Component {
     } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
       console.log(stock);
       return stock.map((item) => {
-        item = item[0]
+        item = item[0];
+
         let chartData = {
            id: uuid.v4(),
            labels: ['0930H','1000H','1030H', '1100H', '1130H', '1200H', '1230H', '1300H', '1330H', '1400H', '1430', '1500', '1530', '1600H'],
@@ -86,44 +84,44 @@ export class lineChart extends Component {
         /></p>
       </div>)
       })
-
-  } else {
-
-    let chartData = {
-       labels: ['1000H','1200H', '1400H', '1600H' , '1600H', '1600H', '1600H', '1600H', '1600H', '1600H', '1600H'],
-       datasets:[
-         {
-           label: stock['Meta Data']['2. Symbol'],
-           data:[
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-1)+ ':00']['1. open'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-2)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-3)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-4)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-5)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-6)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-7)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-8)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-9)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-10)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-11)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-12)+ ':00']['4. close']
-
-           ],
-           backgroundColor:[
-             'rgba(0, 0, 0, 0)'
-           ],
-           pointBorderWidth: 3,
-         }]
-     }
-
-    return (<div>
-      {stock['Meta Data']['2. Symbol']}
-      {stock['Time Series (1min)'][todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00']['2. high']}
-      {stock['Time Series (1min)'][todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00']['4. close']}
-      {stock['Time Series (1min)'][todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00']['3. low']}
-      <p><Line data ={chartData}/></p>
-    </div>)
-  }
+}
+  // } else {
+  //
+  //   let chartData = {
+  //      labels: ['1000H','1200H', '1400H', '1600H' , '1600H', '1600H', '1600H', '1600H', '1600H', '1600H', '1600H'],
+  //      datasets:[
+  //        {
+  //          label: stock['Meta Data']['2. Symbol'],
+  //          data:[
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-1)+ ':00']['1. open'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-2)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-3)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-4)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-5)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-6)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-7)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-8)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-9)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-10)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-11)+ ':00']['4. close'],
+  //            stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-12)+ ':00']['4. close']
+  //
+  //          ],
+  //          backgroundColor:[
+  //            'rgba(0, 0, 0, 0)'
+  //          ],
+  //          pointBorderWidth: 3,
+  //        }]
+  //    }
+  //
+  //   return (<div>
+  //     {stock['Meta Data']['2. Symbol']}
+  //     {stock['Time Series (1min)'][todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00']['2. high']}
+  //     {stock['Time Series (1min)'][todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00']['4. close']}
+  //     {stock['Time Series (1min)'][todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00']['3. low']}
+  //     <p><Line data ={chartData}/></p>
+  //   </div>)
+  // }
   }
 
 
