@@ -38,6 +38,7 @@ CHECK FOR MARKET OPENING
       return
     } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
     //Display Doughnut Chart  If Market is Closed.
+    
     let chartData={
       labels: ["High", "Low"],
        datasets: [{

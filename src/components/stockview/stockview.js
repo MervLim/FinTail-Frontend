@@ -69,7 +69,7 @@ renderNews(){
       return (
         <div key ={uuid.v4()}>
           <a href >= {item.url}>{item.title}</a>
-          <p key={uuid.v4()}>{item.summary}</p>
+          <p>{item.summary}</p>
         </div>
 
       )
