@@ -24,6 +24,13 @@ export const displayNewsResult = (news) => {
   };
 }
 
+export const storeDashboard = (dashboardArr) => {
+  return {
+    type: 'STORE_DASHBOARD',
+    dashboardArr
+  };
+}
+
 export const getStock = (searchTerm) => {
   console.log('im inside getStock actions')
   return (dispatch) => {
