@@ -1,6 +1,9 @@
 
 import React, {Component} from 'react';
 import moment from 'moment';
+import 'moment-timezone';
+
+
 import { connect } from 'react-redux';
 import {Bar, Line} from 'react-chartjs-2';
 import './lineChart.css';
@@ -19,8 +22,12 @@ export class lineChart extends Component {
     const yyyy = today.getFullYear();
     const dateCombine = yyyy+'-'+mm+'-'+dd;
     const dateCombine2 = yyyy+'-'+mm+'-'+dd2;
+    const date3  =  moment("29-06-1995", ["MM-DD-YYYY", "DD-MM", "DD-MM-YYYY"]);
+
 
     let todayFormat =  moment(dateCombine).format('YYYY-MM-DD');
+    console.log("timezoneFormat " + todayFormat);
+    let timezone = moment()
     let todayFormat2 =  moment(dateCombine2).format('YYYY-MM-DD');
 
     const hours = today.getHours();
@@ -28,6 +35,9 @@ export class lineChart extends Component {
     const currentTime = String(hours) + String(mins);
     const currentTimeTwoFourFormat = String(hours - 12) + ':' + String(mins);
     const intCurrentTime = parseInt(currentTime);
+    //Date.now get date .to get today dateCombine'
+    //Date.now.setDate()
+
 
 
     let stock = this.props.result[0];
@@ -66,7 +76,8 @@ export class lineChart extends Component {
              pointBorderWidth: 3,
            }]
        }
-    return (<div>
+    return (
+      <div>
       <span className='title'>{stock['Meta Data']['2. Symbol']} - {todayFormat}</span>
       {stock['Time Series (1min)'][todayFormat + ' 16:00:00']['2. high']}
       {stock['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']}

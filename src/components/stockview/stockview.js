@@ -5,6 +5,8 @@ import DoughnutChart from '../chart/doughnutChart';
 import './stockview.css';
 import {Bar, Line} from 'react-chartjs-2';
 import moment from 'moment';
+import uuid from 'uuid';
+
 
 import axios from 'axios';
 
@@ -65,9 +67,9 @@ renderNews(){
   } else {
     return this.props.newsResult[0].data.map((item) => {
       return (
-        <div>
-          <a href = {item.url}>{item.title}</a>
-          <p>{item.summary}</p>
+        <div key ={uuid.v4()}>
+          <a href >= {item.url}>{item.title}</a>
+          <p key={uuid.v4()}>{item.summary}</p>
         </div>
 
       )
