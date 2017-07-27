@@ -3,6 +3,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import {Doughnut} from 'react-chartjs-2';
 import EntryPriceModal from '../modal/entryPriceModal';
+import uuid from 'uuid';
 
 export class doughnutChart extends Component {
   constructor(props) {
@@ -27,45 +28,46 @@ export class doughnutChart extends Component {
     const currentTime = String(hours) + String(mins);
     const currentTimeTwoFourFormat = String(hours - 12) + ':' + String(mins);
     const intCurrentTime = parseInt(currentTime);
-
-
 /*
 CHECK FOR MARKET OPENING
 */
-    console.log(currentTime);
-    let stock = this.props.result[0];
+    let stock = this.props.result;
     if(typeof(stock) == "undefined") {
       return
     } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
     //Display Doughnut Chart  If Market is Closed.
-    
-    let chartData={
-      labels: ["High", "Low"],
-       datasets: [{
-              data:[
-                 stock['Time Series (1min)'][todayFormat + ' 16:00:00']['1. open'],
-                 stock['Time Series (1min)'][todayFormat  + ' 16:00:00']['3. low']
-              ],
-              backgroundColor: [
-              '#FF6384',
-              '#36A2EB',
-              '#FFCE56'
-              ],
-              hoverBackgroundColor: [
-              '#FF6384',
-              '#36A2EB',
-              '#FFCE56'
-              ]
-       }]
-    }
+    return stock.map((item)=>{
+      item = item[0];
+      let chartData={
+         id: uuid.v4(),
+        labels: ["High", "Low"],
+         datasets: [{
+                data:[
+                   item['Time Series (1min)'][todayFormat + ' 16:00:00']['1. open'],
+                   item['Time Series (1min)'][todayFormat  + ' 16:00:00']['3. low']
+                ],
+                backgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56'
+                ],
+                hoverBackgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56'
+                ]
+         }]
+      }
 
 
-    return (
-      <div>
-        <EntryPriceModal />
-        <Doughnut data={chartData} />
-      </div>
-    )
+      return (
+        <div key={chartData.id}>
+          <EntryPriceModal />
+          <Doughnut data={chartData} />
+        </div>
+      )
+    })
+
     } else {
       let chartData={
        datasets: [{
@@ -90,7 +92,7 @@ CHECK FOR MARKET OPENING
     //Display Doughnut Chart If Market is Open
       <div>
         <EntryPriceModal />
-        <Doughnut data={chartData} />
+        <Doughnut data={chartData.id} />
       </div>
     )
     }

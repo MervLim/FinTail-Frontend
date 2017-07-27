@@ -29,11 +29,7 @@ export class lineChart extends Component {
     const currentTimeOneTwoFormat = String(hours - 12) + ':' + String(mins);
     const intCurrentTime = parseInt(currentTime);
 
-<<<<<<< HEAD
-    let stock = this.props.result[0];
-=======
     let stock = this.props.result;
->>>>>>> 0918cd90e300fdd4bed455a5adbb5bc5c8f9fce2
 
     console.log(intCurrentTime);
     console.log(hours);
@@ -43,49 +39,6 @@ export class lineChart extends Component {
     if(typeof(stock) == "undefined") {
       return
     } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
-<<<<<<< HEAD
-      console.log(stock['0']['Time Series (1min)'][todayFormat + ' 14:45:00']['1. open']);
-      let chartData = {
-         labels: ['0930H','1000H','1030H'],
-         datasets:[
-           {
-             label: stock['0']['Meta Data']['2. Symbol'],
-             data:[
-               stock['0']['Time Series (1min)'][todayFormat + ' 14:45:00']['1. open'],
-               stock['0']['Time Series (1min)'][todayFormat + ' 14:50:00']['4. close'],
-               stock['0']['Time Series (1min)'][todayFormat + ' 14:55:00']['4. close']
-              //  stock['Time Series (1min)'][todayFormat + ' 15:00:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:10:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:15:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:20:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:25:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:30:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:35:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:40:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:45:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:50:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 15:55:00']['4. close'],
-              //  stock['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']
-
-             ],
-             backgroundColor:[
-               'rgba(0, 0, 0, 0)'
-             ],
-             pointBorderWidth: 3,
-           }]
-       }
-    return (<div>
-      <span className='title'>{stock['Meta Data']['2. Symbol']} - {todayFormat}</span>
-      {stock['Time Series (1min)'][todayFormat + ' 16:00:00']['2. high']}
-      {stock['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']}
-      {stock['Time Series (1min)'][todayFormat + ' 16:00:00']['3. low']}
-      <p><Line data ={chartData}
-               width={100}
-               height={400}
-               options={{maintainAspectRatio: false}}
-      /></p>
-    </div>)
-=======
       console.log(stock);
       return stock.map((item) => {
         item = item[0]
@@ -134,7 +87,6 @@ export class lineChart extends Component {
       </div>)
       })
 
->>>>>>> 0918cd90e300fdd4bed455a5adbb5bc5c8f9fce2
   } else {
 
     let chartData = {
