@@ -50,6 +50,7 @@ renderNews(){
 
 }
   render() {
+    
     return (
       <div className='stockView'>
         <button type='button' id='btnAddPreference' onClick={this.onClick}>Add to dashboard</button>
@@ -57,6 +58,8 @@ renderNews(){
         <div id='newsFeed'>
         {this.renderNews()}
         </div>
+        <div id='doughnutChart'><DoughnutChart /></div>
+
 
       </div>
     );

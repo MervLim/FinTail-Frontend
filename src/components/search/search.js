@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './search.css';
-import { getStock, searchTerm, getNews }from '../../actions/searchActions';
+import { getStock, searchTerm, getNews, getNewsAndStock }from '../../actions/searchActions';
 import { connect } from 'react-redux';
 
 export class search extends Component {
@@ -8,8 +8,9 @@ export class search extends Component {
   onClick = (e) => {
     let result = this.state.searchTerm;
     this.props.changeSearchTerm(result);
-    this.props.getStock(result);
-    this.props.getNews(result);
+    // this.props.getStock(result);
+    // this.props.getNews(result);
+    this.props.getNewsAndStock(result);
 
     // dispatch get stock
     // update store state
@@ -43,8 +44,10 @@ export class search extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeSearchTerm: (text) => { dispatch(searchTerm(text)); },
-    getStock: (text) => { dispatch(getStock(text)); },
-    getNews: (text) => {dispatch(getNews(text)); }
+    // getStock: (text) => { dispatch(getStock(text)); },
+    // getNews: (text) => {dispatch(getNews(text)); },
+    getNewsAndStock: (text) => {dispatch(getNewsAndStock(text)); }
+
   }
 }
 
