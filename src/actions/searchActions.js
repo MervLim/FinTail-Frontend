@@ -20,7 +20,7 @@
   export const storeDashboard= (dashboardArr) => {
     return {
       type: 'STORE_DASHBOARD',
-      
+
     };
   }
 
