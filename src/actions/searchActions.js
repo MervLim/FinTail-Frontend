@@ -85,7 +85,7 @@ const getNews1 = (searchTerm) => {
 }
 
 const getRes1 = (searchTerm) => {
-  return axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=O4S8KZ7QADUOH6CX')
+  return axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=GQBU0ZPN342PFXI9')
 }
 
 export const getNewsAndStock = (searchTerm) => {
