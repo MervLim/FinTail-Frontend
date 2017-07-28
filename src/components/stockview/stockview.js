@@ -17,7 +17,9 @@ export class stockview extends Component {
     super(props);
     // console.log(this.props.result);
 
-
+  this.state = {
+    dashboardArr:[]
+  }
 
   }
 
@@ -27,14 +29,19 @@ onClick = (e) => {
 
 }
 
-
   render() {
+
     return (
       <div className='stockView'>
         <button type='button' id='btnAddPreference' onClick={this.onClick}>Add to dashboard</button>
-        <div><LineChart /></div>
+        <div id='line-chart'><LineChart /></div>
+        <div id='newsFeed'>
+
+        </div>
         <div id='doughnutChart'><DoughnutChart /></div>
-        <NewsFeed />
+          <NewsFeed />
+
+
       </div>
     );
   }
@@ -43,6 +50,7 @@ onClick = (e) => {
 const mapStateToProps = (state) => {
   return{
     result: state.JSONresult.result,
+    newsResult: state.JSONresult.news
   }
 }
 
