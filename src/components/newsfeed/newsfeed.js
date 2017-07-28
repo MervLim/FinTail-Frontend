@@ -6,6 +6,8 @@ import EntryPriceModal from '../modal/entryPriceModal';
 import uuid from 'uuid';
 import './newsfeed.css'
 
+
+
 export class newsfeed extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +20,7 @@ export class newsfeed extends Component {
         <div></div>
       )
     } else {
+
       return this.props.newsResult.map((item) => {
         return item[0].data.map((item) => {
 
