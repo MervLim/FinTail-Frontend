@@ -5,11 +5,34 @@ import {Doughnut} from 'react-chartjs-2';
 import EntryPriceModal from '../modal/entryPriceModal';
 import uuid from 'uuid';
 import './doughnutChart.css';
+import {addTotalPrice} from '../../actions/updateChartActions';
+
+
 
 export class doughnutChart extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      entryPrice: 0,
+      vol: 0,
+      totalPrice: 0
+    }
   }
+
+onChange = (e) => {
+  this.state.entryPrice = e.target.value;
+  this.state.vol = e.target.value;
+}
+
+onClick = (e) => {
+  let totalPrice = this.state.entryPrice * this.state.vol;
+  let volume = this.state.vol;
+  this.props.updateEntryPrice(totalPrice, volume);
+  this.props.handleCloseModal();
+}
+
+
   renderStock(){
     //Set Date and Time
     let today = new Date();
@@ -59,9 +82,8 @@ CHECK FOR MARKET OPENING
       }
       return (
         <div key={chartData.id} className='doughnutChart'>
-          <EntryPriceModal />
+          <EntryPriceModal onChange={this.onChange} onClick={this.onClick} />
           {chartData.title}
-
           <Doughnut data={chartData}
                     width={150}
                     height={150}
@@ -73,7 +95,8 @@ CHECK FOR MARKET OPENING
       return stock.map((item)=>{
         item = item[0];
         let chartData={
-           id: uuid.v4(),
+          title: item['Meta Data']['2. Symbol'],
+          id: uuid.v4(),
           labels: ["High", "Low"],
            datasets: [{
                   data:[
@@ -94,7 +117,8 @@ CHECK FOR MARKET OPENING
         }
         return (
           <div key={chartData.id} className='doughnutChart'>
-            <EntryPriceModal />
+            <EntryPriceModal onChange={this.onChange} onClick={this.onClick} />
+            {chartData.title}
             <Doughnut data={chartData}   width={250}
               height={250}
               options={{maintainAspectRatio: false}}/>
@@ -112,4 +136,10 @@ const mapStateToProps = (state) => {
     result: state.JSONresult.result,
   };
 }
-export default connect(mapStateToProps, null)(doughnutChart);
+
+const mapDispatchToProps=(dispatch)=>{
+  return{
+     updateEntryPrice: (totalPrice, volume) => {dispatch(addTotalPrice(totalPrice, volume));}
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(doughnutChart);
