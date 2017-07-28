@@ -1,8 +1,8 @@
 const initialState = {
-  news:{},
   searchTerm: " ",
-result : []
-
+  result : [],
+  news: [],
+  dashboardArr:[]
 }
 
 const searchReducer = (state = initialState, action) =>{
@@ -18,41 +18,28 @@ const searchReducer = (state = initialState, action) =>{
     break;
 
 
-    // case 'DISPLAY_RESULT':
-    // console.log('im inside UPDATE_RESULT reducer!')
-    // // console.log('state',state.result, 'action', action.result)
-    //   return {
-    //     ...state,
-    //     result: [...state.result,
-    //                 action.result ]
-    //     // result: action.result
-    //   }
-    // break;
-    //
-    // case 'DISPLAY_NEWS':
-    // console.log('im inside DISPLAY_NEWS reducer!')
-    // return {
-    //   ...state,
-    //   news: [...state.news,
-    //             action.news ]
-    //   // news: action.news
-    // }
-    // break;
-
-    case 'STORE_DASHBOARD':
-    console.log('im inside STORE DASHBOARD reducer!')
-  
+    case 'DISPLAY_RESULT':
+    console.log('im inside UPDATE_RESULT reducer!')
+    // console.log('state',state.result, 'action', action.result)
       return {
-        storeState,
-        result: [
-          storeState.result,
-          {
-            news: action.news,
-            result: action.results
-          }
-        ]
-
+        ...state,
+        result: [...state.result,
+                    action.result ]
+        // result: action.result
       }
+    break;
+
+    case 'DISPLAY_NEWS':
+    console.log('im inside DISPLAY_NEWS reducer!')
+    return {
+      ...state,
+      news: [...state.news,
+                action.news ]
+      // news: action.news
+    }
+    break;
+
+
 
 
    default:

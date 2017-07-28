@@ -41,7 +41,10 @@
 
 
 #doughnutChart {
-  width: 40%;
+  margin-top: 50px;
+  width: 90%;
   height: 50%;
   display: inline-block;
+  border-bottom: 1px solid;
+  padding-bottom: 50px;
 }

@@ -32,10 +32,10 @@ CHECK FOR MARKET OPENING
       return
     } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
     //Display Doughnut Chart  If Market is Closed.
-    console.log('iM INSDIE DOUGHNUT');
     return stock.map((item)=>{
       item = item[0];
       let chartData={
+         title: item['Meta Data']['2. Symbol'],
          id: uuid.v4(),
         labels: ["High", "Low"],
          datasets: [{
@@ -56,40 +56,50 @@ CHECK FOR MARKET OPENING
          }]
       }
       return (
-        <div key={chartData.id}>
+        <div key={chartData.id} className='doughnutChart'>
           <EntryPriceModal />
-          <Doughnut data={chartData} />
+          {chartData.title}
+
+          <Doughnut data={chartData}
+                    width={150}
+                    height={150}
+                    options={{maintainAspectRatio: false}} />
         </div>
       )
     })
-  }
-    // } else {
-    //   let chartData={
-    //    datasets: [{
-    //           data:[
-    //              stock['Time Series (1min)'][todayFormat + currentTime]['2. high'],
-    //              stock['Time Series (1min)'][todayFormat  + currentTime]['3. low']
-    //           ],
-    //           backgroundColor: [
-    //           '#FF6384',
-    //           '#36A2EB',
-    //           '#FFCE56'
-    //           ],
-    //           hoverBackgroundColor: [
-    //           '#FF6384',
-    //           '#36A2EB',
-    //           '#FFCE56'
-    //           ]
-    //    }]
-    // }
-    // return (
-    // //Display Doughnut Chart If Market is Open
-    //   <div>
-    //     <EntryPriceModal />
-    //     <Doughnut data={chartData.id} />
-    //   </div>
-    // )
-    // }
+    } else {
+      return stock.map((item)=>{
+        item = item[0];
+        let chartData={
+           id: uuid.v4(),
+          labels: ["High", "Low"],
+           datasets: [{
+                  data:[
+                     item['Time Series (1min)'][todayFormat + ' 16:00:00']['1. open'],
+                     item['Time Series (1min)'][todayFormat  + ' 16:00:00']['3. low']
+                  ],
+                  backgroundColor: [
+                  '#FF6384',
+                  '#36A2EB',
+                  '#FFCE56'
+                  ],
+                  hoverBackgroundColor: [
+                  '#FF6384',
+                  '#36A2EB',
+                  '#FFCE56'
+                  ]
+           }]
+        }
+        return (
+          <div key={chartData.id} className='doughnutChart'>
+            <EntryPriceModal />
+            <Doughnut data={chartData}   width={250}
+              height={250}
+              options={{maintainAspectRatio: false}}/>
+          </div>
+        )
+      })
+    }
     }
   render() {
     return (<div>{this.renderStock()}</div>);
