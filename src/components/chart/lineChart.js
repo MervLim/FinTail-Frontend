@@ -6,12 +6,12 @@ import './lineChart.css';
 import uuid from 'uuid';
 
 
-export class lineChart extends Component {
+class LineChart extends Component {
   constructor(props) {
     super(props);
   }
 
-  renderStock(){
+  renderLineChart(){
     let today = new Date();
     const dd = today.getDate()-1;
     const dd2 = today.getDate();
@@ -29,14 +29,14 @@ export class lineChart extends Component {
     const currentTimeOneTwoFormat = String(hours - 12) + ':' + String(mins);
     const intCurrentTime = parseInt(currentTime);
 
-    let stock = this.props.result;
+    let stock = this.props.chartData;
 
+      console.log("STOCK UNDEFINED" +  stock);
 
-
-    if(typeof(stock) == "undefined") {
+    if(stock.length = 0) {
       return
-    } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
-      console.log(stock);
+    } else if (stock.length!=0 && intCurrentTime > 430 && intCurrentTime < 2130){
+        console.log("LINECHARTPROPS:" +  stock);
       return stock.map((item) => {
         item = item[0];
 
@@ -126,7 +126,7 @@ export class lineChart extends Component {
 
 
   render() {
-    return (<div>{this.renderStock()}</div>);
+    return (<div>{this.renderLineChart()}</div>);
   }
 }
 
@@ -141,4 +141,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, null)(lineChart);
+export default connect(mapStateToProps, null)(LineChart);

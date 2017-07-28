@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Search from '../search/search';
 import Stockview from '../stockview/stockview';
 import { connect } from 'react-redux';
+
 import Networth from '../networth/networth';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { localLogout } from '../../actions/userAction';
@@ -24,13 +25,13 @@ export class dashboard extends Component {
       <div>
       <header id='navBar'><p><span>Blood</span>Hound - Your portfolio at a glance</p></header>
       <div className="nav-login pull-right">Login</div>
-      <Link to="/">
-        
-        </Link>
       <Search />
       <div className='dashboard'>
       <Networth />
-      <Stockview/>
+      <Stockview
+          linechart={this.props.result}
+          doughnutchart={this.props.doughnutch}
+        />
       </div>
 
       </div>
@@ -38,6 +39,10 @@ export class dashboard extends Component {
     );
   }
 }
+
+
+
+
 const mapStateToProps = (state) => {
   return {
     user: state.user

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {Doughnut} from 'react-chartjs-2';
 import EntryPriceModal from '../modal/entryPriceModal';
 import uuid from 'uuid';
-export class doughnutChart extends Component {
+class doughnutChart extends Component {
   constructor(props) {
     super(props);
   }

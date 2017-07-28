@@ -12,6 +12,8 @@ import { createStore } from 'redux';
 import { initStore } from './store/store'
 
 
+
+
 const store = initStore();
 store.subscribe( () => {
     const state = store.getState();

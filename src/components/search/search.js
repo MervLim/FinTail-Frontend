@@ -5,20 +5,16 @@ import { connect } from 'react-redux';
 
 export class search extends Component {
 
+  constructor(props) {
+    super(props);
+
+  }
+
   onClick = (e) => {
     let result = this.state.searchTerm;
     this.props.changeSearchTerm(result);
-    // this.props.getStock(result);
-    // this.props.getNews(result);
     this.props.getNewsAndStock(result);
-
-    // dispatch get stock
-    // update store state
-    // re-render
-    // in stockview
-    // does searchR.stock exist?
-    // if it does, show graph
-    // if not, show something else
+    console.log(this.props);
   }
 
   onChange = (e) => {
@@ -44,11 +40,16 @@ export class search extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeSearchTerm: (text) => { dispatch(searchTerm(text)); },
-    // getStock: (text) => { dispatch(getStock(text)); },
-    // getNews: (text) => {dispatch(getNews(text)); },
+
     getNewsAndStock: (text) => {dispatch(getNewsAndStock(text)); }
 
   }
 }
 
-export default connect(null, mapDispatchToProps)(search);
+const mapStateToProps = (state) => {
+  return {
+    result: state.JSONresult.result
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(search);

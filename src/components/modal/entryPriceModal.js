@@ -13,7 +13,6 @@ export class entryPriceModal extends Component {
     super(props);
     this.state={
       showModal: false
-
     };
   }
 

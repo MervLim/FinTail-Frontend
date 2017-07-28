@@ -1,8 +1,8 @@
 const initialState = {
+  news:{},
   searchTerm: " ",
-  result : [],
-  news: [],
-  dashboardArr:[]
+result : []
+
 }
 
 const searchReducer = (state = initialState, action) =>{
@@ -41,12 +41,15 @@ const searchReducer = (state = initialState, action) =>{
 
     case 'STORE_DASHBOARD':
     console.log('im inside STORE DASHBOARD reducer!')
+  
       return {
-        ...state,
+        storeState,
         result: [
-          ...state.result,
-          action.news,
-          action.result
+          storeState.result,
+          {
+            news: action.news,
+            result: action.results
+          }
         ]
 
       }

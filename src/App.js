@@ -16,12 +16,6 @@ class App extends Component {
     return (
       <div className="App">
         <Dashboard />
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Dashboard}/>
-            <Route exact path="/login" component={Login}/>
-          </Switch>
-        </Router>
       </div>
     );
   }
