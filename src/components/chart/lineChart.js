@@ -32,16 +32,15 @@ export class lineChart extends Component {
     let stock = this.props.result;
 
     console.log(intCurrentTime);
-    console.log(hours);
-    console.log(todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00');
 
 
     if(typeof(stock) == "undefined") {
       return
     } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
-      console.log(stock);
+      console.log('im hitting else if!');
       return stock.map((item) => {
         item = item[0]
+
         let chartData = {
            id: uuid.v4(),
            labels: ['0930H','1000H','1030H', '1100H', '1130H', '1200H', '1230H', '1300H', '1330H', '1400H', '1430', '1500', '1530', '1600H'],
@@ -74,7 +73,7 @@ export class lineChart extends Component {
          }
          console.log(chartData)
       return (
-        <div key={chartData.id}>
+        <div key={chartData.id} className='line-chart'>
         <span className='title'>{item['Meta Data']['2. Symbol']} - {todayFormat}</span>
         {item['Time Series (1min)'][todayFormat + ' 16:00:00']['2. high']}
         {item['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']}
@@ -88,41 +87,55 @@ export class lineChart extends Component {
       })
 
   } else {
+    console.log('im hitting else!');
+    return stock.map((item) => {
+      item = item[0]
 
-    let chartData = {
-       labels: ['1000H','1200H', '1400H', '1600H' , '1600H', '1600H', '1600H', '1600H', '1600H', '1600H', '1600H'],
-       datasets:[
-         {
-           label: stock['Meta Data']['2. Symbol'],
-           data:[
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-1)+ ':00']['1. open'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-2)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-3)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-4)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-5)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-6)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-7)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-8)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-9)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-10)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-11)+ ':00']['4. close'],
-             stock['Time Series (1min)'][todayFormat2 + (parseInt(currentTimeOneTwoFormat)-12)+ ':00']['4. close']
+      let chartData = {
 
-           ],
-           backgroundColor:[
-             'rgba(0, 0, 0, 0)'
-           ],
-           pointBorderWidth: 3,
-         }]
-     }
+         id: uuid.v4(),
+         labels: ['0930H','1000H','1030H', '1100H', '1130H', '1200H', '1230H', '1300H', '1330H', '1400H', '1430', '1500', '1530', '1600H'],
+         datasets:[
+           {
+             label: item['Meta Data']['2. Symbol'],
+             data:[
+               item['Time Series (1min)'][todayFormat + ' 14:45:00']['1. open'],
+               item['Time Series (1min)'][todayFormat + ' 14:50:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 14:55:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:00:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:10:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:15:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:20:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:25:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:30:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:35:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:40:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:45:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:50:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 15:55:00']['4. close'],
+               item['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']
 
-    return (<div>
-      {stock['Meta Data']['2. Symbol']}
-      {stock['Time Series (1min)'][todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00']['2. high']}
-      {stock['Time Series (1min)'][todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00']['4. close']}
-      {stock['Time Series (1min)'][todayFormat2 + ' ' + currentTimeOneTwoFormat + ':00']['3. low']}
-      <p><Line data ={chartData}/></p>
+             ],
+             backgroundColor:[
+               'rgba(0, 0, 0, 0)'
+             ],
+             pointBorderWidth: 3,
+           }]
+       }
+       console.log(chartData)
+    return (
+      <div key={chartData.id} className='line-chart '>
+      <span className='title'>{item['Meta Data']['2. Symbol']} - {todayFormat}</span>
+      {item['Time Series (1min)'][todayFormat + ' 16:00:00']['2. high']}
+      {item['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']}
+      {item['Time Series (1min)'][todayFormat + ' 16:00:00']['3. low']}
+      <p><Line data ={chartData}
+               width={100}
+               height={400}
+               options={{maintainAspectRatio: false}}
+      /></p>
     </div>)
+    })
   }
   }
 

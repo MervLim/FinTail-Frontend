@@ -39,12 +39,7 @@ const searchReducer = (state = initialState, action) =>{
     }
     break;
 
-    case 'STORE_DASHBOARD':
-    console.log('im inside STORE DASHBOARD reducer!')
-      return {
-        ...state
 
-      }
 
 
    default:
