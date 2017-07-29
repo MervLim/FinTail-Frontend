@@ -8,6 +8,7 @@ import {
 import {connect} from 'react-redux'
 import { RouteTransition } from 'react-router-transition';
 
+import LogIn from './components/login/login'
 import Dashboard from './components/dashboard/dashboard';
 
 import logo from './logo.svg';
@@ -30,6 +31,7 @@ class App extends Component {
           >
           <Switch key={location.key} location={location}>
             <Route exact path="/" component={Dashboard}/>
+            <Route exact path="/login" component={LogIn}/>
 
 
           </Switch>
