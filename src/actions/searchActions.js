@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+//import socket io to tie backend with frontend
+import io from 'socket.io-client'
+export const socket = io.connect('http://localhost:3001');
 
 export const searchTerm = (searchTerm) => {
   return {
