@@ -1,16 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import {connect} from 'react-redux'
+import { RouteTransition } from 'react-router-transition';
+
 import Dashboard from './components/dashboard/dashboard';
 
+import logo from './logo.svg';
+import './App.css';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Dashboard />
-      </div>
+      <Router>
+
+      <Route render={({location, history, match}) => {
+        return (
+          <RouteTransition
+            pathname={location.pathname}
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}
+          >
+          <Switch key={location.key} location={location}>
+            <Route exact path="/" component={Dashboard}/>
+
+
+          </Switch>
+          </RouteTransition>
+        );
+      }}/>
+    </Router>
+    </div>
     );
   }
 }

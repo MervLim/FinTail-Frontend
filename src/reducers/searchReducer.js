@@ -1,17 +1,10 @@
-import {fromJS} from 'imutable';
-
-const initialState = fromJS({
+const initialState ={
   searchTerm: " ",
   result : [],
   news: [],
   dashboardArr:[]
-});
+};
 
-
-import TaskMap from 'helper/TaskMap';
-const initialState = new TaskMap();
-
-const mergeEntities = (state, ne)
 
 const searchReducer = (state = initialState, action) =>{
 
