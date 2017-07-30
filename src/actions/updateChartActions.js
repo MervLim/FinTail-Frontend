@@ -8,23 +8,26 @@ export const addTotalPrice = (price, volume) =>{
   };
 }
 
-export const storeEntryPrice = (entryprice) => {
+export const storeEntryPriceAndTickr = (entryPrice,tickr) => {
   return {
-    type: "STORE_ENTRY_PRICE",
-    entryprice
-  }
+    type: "STORE_ENTRY_PRICE_TICKR",
+    entryPrice,
+    tickr
+  };
+}
 
-/*EntryPrice*/
 
-export const postEntryPrice = (entryprice) => {
+/*Store Entry Price and tickr */
+
+export const postEntryAndTickr = (entryPrice) => {
   return (dispatch) => {
-    axios.put('/stock/' ,entryprice)
+    axios.put('/stock/' ,entryPrice)
       .then( (response) => {
         console.log(response.data);
-          dispatch(storeEvents(response.data))
+          dispatch(storeEntryPriceAndTickr(response.data));
       })
       .catch((error)=> {
-        console.error("User Entry Price Not Posted in Server")
+        console.error("User Entry Price And Tickr Not Posted in Server")
       });
   }
 }

@@ -55,6 +55,7 @@ export class entryPriceModal extends Component {
       this.setState({
         volume: stockVol,
         totalPrice: entryPrice * stockVol
+        entryPrice: entryPrice
       })
     }
   }
