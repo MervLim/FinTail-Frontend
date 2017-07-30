@@ -17,6 +17,34 @@ class login extends Component {
       password: ""
     }
   }
+  onChange = (e) => {
+    let state = this.state;
+    let key = e.target.name;
+    let value = e.target.value;
+
+    state[key] = value;
+    console.log("Login State: "  + state);
+    this.setState(state);
+  }
+
+  localLogin = (e) => {
+    if (this.state.email == "" || this.state.password == "") {
+    e.preventDefault();
+    } else {
+      this.props.Login(this.state);
+    }
+  }
+
+  enterKeyPress = (e) => {
+    if(e.charCode==13){
+      if (this.state.email == "" || this.state.password == "") {
+      e.preventDefault();
+      } else {
+        this.props.Login(this.state);
+      }
+    }
+  }
+
 
   render() {
     return (
@@ -24,9 +52,9 @@ class login extends Component {
         <div className='login-form'>
           <p className='pull-center'>FinTail</p>
           <hr/>
-          <input type="email" name="email" id="email" className='login-field' placeholder="Email Address" />
-          <input type="password" name="password" id="password" className='login-field' placeholder="Password" />
-          <button  onClick={this.localLogin}>Log in</button>
+          <input type="email" name="email" id="email" className='login-field' placeholder="Email Address" onChange={this.onChange} />
+          <input type="password" name="password" id="password" className='login-field' placeholder="Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
+          <button onClick={this.localLogin}>Log in</button>
           <hr/>
           <Link to='/signup'><button  onClick={this.onChange}>Sign Up</button></Link>
           <Link to='/'><button onClick={this.onChange}>Back</button></Link>
@@ -40,12 +68,13 @@ class login extends Component {
 const mapStateToProps = (state) => {
 
   return {
+
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+     Login: (credentials) => {dispatch(localLogin(credentials));},
   }
 }
 

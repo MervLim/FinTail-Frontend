@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 //import socket io to tie backend with frontend
-import io from 'socket.io-client'
-export const socket = io.connect('http://localhost:3001');
+
 
 export const searchTerm = (searchTerm) => {
   return {
@@ -38,7 +37,7 @@ export const getStock = (searchTerm) => {
   console.log('im inside getStock actions')
   return (dispatch) => {
     console.log('im in axios dispatch');
-    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=O4S8KZ7QADUOH6CX')
+    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=GQBU0ZPN342PFXI9')
       .then( (response) => {
         let stock = [];
         stock.push(response.data);

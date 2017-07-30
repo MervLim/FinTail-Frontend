@@ -10,15 +10,6 @@ export class search extends Component {
     this.props.changeSearchTerm(result);
     this.props.getStock(result);
     this.props.getNews(result);
-    // this.props.getNewsAndStock(result);
-
-    // dispatch get stock
-    // update store state
-    // re-render
-    // in stockview
-    // does searchR.stock exist?
-    // if it does, show graph
-    // if not, show something else
   }
 
   onChange = (e) => {
@@ -27,15 +18,24 @@ export class search extends Component {
       searchTerm: result,
     })
     console.log(result)
-
   }
+
+  enterKeyPress = (e) => {
+    if(e.charCode==13){
+      let result = this.state.searchTerm;
+      this.props.changeSearchTerm(result);
+      this.props.getStock(result);
+      this.props.getNews(result);
+    }
+  }
+
 
 
   render() {
     return (
       <div>
-        <input type='text' placeholder='Enter your tickr symbol' id='search' onChange={this.onChange}></input>
-        <button type='button' id='btnSearch' onClick={this.onClick}>Search</button>
+        <input type='text' placeholder='Enter your tickr symbol' id='search' onChange={this.onChange}  onKeyPress={this.enterKeyPress}></input>
+        <button type='button' id='btnSearch' onClick={this.onClick} onKeyPress={this.enterKeyPress}>Search</button>
       </div>);
   }
 }
