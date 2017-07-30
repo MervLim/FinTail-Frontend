@@ -16,13 +16,12 @@ export const storeEntryPrice = (entryprice) => {
 
 /*EntryPrice*/
 
-export const postEntryPrice = (user_id) => {
+export const postEntryPrice = (entryprice) => {
   return (dispatch) => {
-    axios.put('/stock/' + user_id)
+    axios.put('/stock/' ,entryprice)
       .then( (response) => {
         console.log(response.data);
-
-
+          dispatch(storeEvents(response.data))
       })
       .catch((error)=> {
         console.error("User Entry Price Not Posted in Server")
