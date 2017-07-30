@@ -21,7 +21,7 @@ const updateChartReducer = (state = initialState, action)=>{
      case 'STORE_ENTRY_PRICE_TICKR':
        return {
          ...state,
-         entryPrice:action.entryPrice
+         entryPrice:action.entryPrice,
          tickr : action.tickr
        }
      break;

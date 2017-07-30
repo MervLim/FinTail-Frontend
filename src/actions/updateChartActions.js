@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 export const addTotalPrice = (price, volume) =>{
   console.log('im inside addTotalPrice actions')
@@ -8,23 +9,15 @@ export const addTotalPrice = (price, volume) =>{
   };
 }
 
-export const storeEntryPriceAndTickr = (entryPrice,tickr) => {
-  return {
-    type: "STORE_ENTRY_PRICE_TICKR",
-    entryPrice,
-    tickr
-  };
-}
 
+/*Store Entry Price */
 
-/*Store Entry Price and tickr */
-
-export const postEntryAndTickr = (entryPrice) => {
+export const postTotalPrice= (price) => {
   return (dispatch) => {
-    axios.put('/stock/' ,entryPrice)
+    axios.put('/stock/' ,price)
       .then( (response) => {
         console.log(response.data);
-          dispatch(storeEntryPriceAndTickr(response.data));
+          dispatch(addTotalPrice(response.data));
       })
       .catch((error)=> {
         console.error("User Entry Price And Tickr Not Posted in Server")

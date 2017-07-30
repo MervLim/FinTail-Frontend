@@ -35,14 +35,35 @@ export const localLogin = (credentials) => {
 
       if(data.error){
         console.log(data.message);
+        //notification if needed
       }else {
         console.error("AXIOS CALL: LOGGED IN /auth/login");
         window.location.href = "/";
       }
     })
     .catch((error) => {
-      console.error("AXIOS CALL: Logged on @ '/auth/login'");
+      console.error("AXIOS CALL: Logged on @ '/auth/login");
       console.log(error);
+    });
+  }
+}
+
+export const localSignup = (credentials) => {
+  return(dispatch) => {
+    axios.post('/auth/signup', credentials)
+    .then((response) => {
+      const data = response.data;
+      if(data.error){
+        console.log(data.message);
+      //Notification if needed
+      }else {
+        console.error("AXIOS CALL:LOCAL SIGNUP '/auth/user'");
+        window.location.href = "/";
+      }
+    })
+    .catch((error) => {
+      console.error("AXIOS CALL: LOCAL SIGN UP/auth/signup'");
+      console.log('error: '+ error.message)
     });
   }
 }
@@ -58,6 +79,7 @@ export const localLogout = () => {
         dispatch(getUser());
         if(data.error){
           console.log(data.message)
+          //Notification if needed
         }else{
           console.error("AXIOS CALL: LOGGED OUT /auth/logout");
         }
