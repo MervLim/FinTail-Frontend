@@ -13,6 +13,7 @@ class login extends Component {
     super(props);
 
     this.state = {
+      username:"",
       email: "",
       password: ""
     }
@@ -48,16 +49,15 @@ class login extends Component {
 
   render() {
     return (
-      <div className="login">
+      <div className="container">
         <div className='login-form'>
           <p className='pull-center'>FinTail</p>
-          <hr/>
+
           <input type="email" name="email" id="email" className='login-field' placeholder="Email Address" onChange={this.onChange} />
           <input type="password" name="password" id="password" className='login-field' placeholder="Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
           <button onClick={this.localLogin}>Log in</button>
-          <hr/>
           <Link to='/signup'><button  onClick={this.onChange}>Sign Up</button></Link>
-          <Link to='/'><button onClick={this.onChange}>Back</button></Link>
+          <Link to='/'><button onClick={this.onChange}>{'Back to home'}</button></Link>
           <hr/>
         </div>
       </div>
@@ -68,7 +68,7 @@ class login extends Component {
 const mapStateToProps = (state) => {
 
   return {
-
+    user : state.user
   }
 }
 

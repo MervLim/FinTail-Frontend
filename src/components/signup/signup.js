@@ -34,8 +34,10 @@ class signup extends Component {
     console.log(this.state.user);
     if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.RePassword == "" || this.state.contact == "") {
     //ADD NOTIFICATION
+      e.preventDefault();
     } else {
     //ADD NOTIFICATION
+    this.props.Signup(this.state.user);
     }
   }
 
@@ -57,10 +59,10 @@ class signup extends Component {
         <div className='login-form'>
           <p>Sign up</p>
           <hr/>
-          <input type="text" name="username" className='signup-field' placeholder="User Name" onChange={this.onChange}/>
-          <input type="email" name="email" className='signup-field' placeholder="Email Address" onChange={this.onChange}/>
-          <input type="password" name="password" className='signup-field' placeholder="Password" onChange={this.onChange}/>
-          <input type="password" name="repassword" className='signup-field' placeholder="Re-enter Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
+          <input type="text" name="username" className='signup-field' id="username" placeholder="User Name" onChange={this.onChange}/>
+          <input type="email" name="email" className='signup-field' id="email" placeholder="Email Address" onChange={this.onChange}/>
+          <input type="password" name="password" className='signup-field' id="password" placeholder="Password" onChange={this.onChange}/>
+          <input type="password" name="repassword" className='signup-field'id="re-password" placeholder="Re-Enter Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
 
 
           <button className="LoginBtn" onClick={this.localSignup}>Sign up</button>
@@ -77,13 +79,13 @@ class signup extends Component {
 const mapStateToProps = (state) => {
 
   return {
-
+     user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    Signup: (credentials) => {dispatch(localSignup(credentials));},
   }
 }
 

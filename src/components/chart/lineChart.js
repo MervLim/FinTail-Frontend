@@ -13,14 +13,14 @@ export class lineChart extends Component {
 
   renderStock(){
     let today = new Date();
-    const dd = today.getDate()-1;
+    const dd = today.getDate()- - 11;
     const dd2 = today.getDate();
     const mm = today.getMonth()+1; //January is 0!
     const yyyy = today.getFullYear();
     const dateCombine = yyyy+'-'+mm+'-'+dd;
     const dateCombine2 = yyyy+'-'+mm+'-'+dd2;
 
-    let todayFormat =  moment(dateCombine).format('YYYY-MM-DD');
+    let todayFormat =  moment(dateCombine).format('YYYY-MM-DD') - 1;
     let todayFormat2 =  moment(dateCombine2).format('YYYY-MM-DD');
 
     const hours = today.getHours();

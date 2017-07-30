@@ -42,7 +42,7 @@ export const localLogin = (credentials) => {
       }
     })
     .catch((error) => {
-      console.error("AXIOS CALL: Logged on @ '/auth/login");
+      console.error("AXIOS CALL ERROR: Logged on '/auth/login");
       console.log(error);
     });
   }
@@ -62,7 +62,7 @@ export const localSignup = (credentials) => {
       }
     })
     .catch((error) => {
-      console.error("AXIOS CALL: LOCAL SIGN UP/auth/signup'");
+      console.error("AXIOS CALL ERROR: LOCAL SIGN UP/auth/signup'");
       console.log('error: '+ error.message)
     });
   }
