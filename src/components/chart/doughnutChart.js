@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import {Doughnut} from 'react-chartjs-2';
 import EntryPriceModal from '../modal/entryPriceModal';
 import uuid from 'uuid';
+import *  as addTotalPrice from '../../actions/searchActions';
 import './doughnutChart.css';
-import {addTotalPrice} from '../../actions/updateChartActions';
-
-
 
 export class doughnutChart extends Component {
   constructor(props) {
@@ -26,8 +24,8 @@ addData = (chart, label, data1, data2) => {
     chart.labels.pop();
     chart.labels.push(label);
     chart.datasets.forEach((dataset) => {
-        dataset.data.pop();
-        dataset.data.push(data1);
+    dataset.data.pop();
+    dataset.data.push(data1);
     });
     console.log(chart);
 }
@@ -83,7 +81,7 @@ CHECK FOR MARKET OPENING
          datasets: [{
                 data:[
                    (item['Time Series (1min)']['2017-07-28' + ' 16:00:00']['4. close']),
-                   this.props.updateChart.totalPrice
+                   this.props.updateChart.symbol
 
                 ],
                 backgroundColor: [

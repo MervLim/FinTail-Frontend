@@ -3,8 +3,9 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
+import *  as addTotalPrice from '../../actions/searchActions';
+
 import './entryPriceModal.css';
-import {addTotalPrice} from '../../actions/updateChartActions';
 
 
 

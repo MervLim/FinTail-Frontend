@@ -52,7 +52,7 @@ class login extends Component {
       <div className="container">
         <div className='login-form'>
           <p className='pull-center'>FinTail</p>
-
+           <p>{this.props.username}</p>
           <input type="email" name="email" id="email" className='login-field' placeholder="Email Address" onChange={this.onChange} />
           <input type="password" name="password" id="password" className='login-field' placeholder="Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
           <button onClick={this.localLogin}>Log in</button>
