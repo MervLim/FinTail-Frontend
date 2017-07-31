@@ -13,23 +13,40 @@ export class doughnutChart extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = ({
       entryPrice: 0,
-      vol: 0,
-      totalPrice: 0
-    }
+      volume: 2,
+      totalPrice:0
+    })
+
   }
 
-onChange = (e) => {
+addData = (chart, label, data1, data2) => {
+    console.log(chart.data);
+    chart.data.labels.pop();
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+        dataset.data.push(data1);
+        dataset.data.push(data2);
+    });
+    chart.update();
+}
+
+handleEntryPrice = (e) => {
   this.state.entryPrice = e.target.value;
-  this.state.vol = e.target.value;
+  console.log('e price ' + this.state.entryPrice);
+}
+
+handleVolume = (e) => {
+  this.state.volume = e.target.value;
+  console.log('vol ' + this.state.volume);
+
 }
 
 onClick = (e) => {
-  let totalPrice = this.state.entryPrice * this.state.vol;
-  let volume = this.state.vol;
-  this.props.updateEntryPrice(totalPrice, volume);
-  this.props.handleCloseModal();
+  let totalPrice = this.state.entryPrice * this.state.volume;
+  this.props.updateEntryPrice(totalPrice, parseInt(this.state.volume));
 }
 
 
@@ -55,18 +72,19 @@ CHECK FOR MARKET OPENING
     let stock = this.props.result;
     if(typeof(stock) == "undefined") {
       return
-    } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
+    } else if (typeof(stock) !== "undefined"){
     //Display Doughnut Chart  If Market is Closed.
     return stock.map((item)=>{
       item = item[0];
-      let chartData={
+      let chartData = {
          title: item['Meta Data']['2. Symbol'],
          id: uuid.v4(),
         labels: ["High", "Low"],
          datasets: [{
                 data:[
-                   item['Time Series (1min)'][todayFormat + ' 16:00:00']['1. open'],
-                   item['Time Series (1min)'][todayFormat  + ' 16:00:00']['3. low']
+                   (item['Time Series (1min)']['2017-07-28' + ' 16:00:00']['4. close']),
+                   this.props.updateChart.totalPrice
+
                 ],
                 backgroundColor: [
                 '#FF6384',
@@ -82,7 +100,7 @@ CHECK FOR MARKET OPENING
       }
       return (
         <div key={chartData.id} className='doughnutChart'>
-          <EntryPriceModal onChange={this.onChange} onClick={this.onClick} />
+          <EntryPriceModal handleEntryPrice={this.handleEntryPrice} handleVolume={this.handleVolume} onClick={this.onClick} />
           {chartData.title}
           <Doughnut data={chartData}
                     width={150}
@@ -117,7 +135,7 @@ CHECK FOR MARKET OPENING
         }
         return (
           <div key={chartData.id} className='doughnutChart'>
-            <EntryPriceModal onChange={this.onChange} onClick={this.onClick} />
+            <EntryPriceModal handleEntryPrice={this.handleEntryPrice} handleVolume={this.handleVolume} onClick={this.onClick} />
             {chartData.title}
             <Doughnut data={chartData}   width={250}
               height={250}
@@ -134,6 +152,7 @@ CHECK FOR MARKET OPENING
 const mapStateToProps = (state) => {
   return{
     result: state.JSONresult.result,
+    updateChart: state.UpdateChart
   };
 }
 

@@ -1,6 +1,6 @@
 const initialState = {
-  totalPrice: '',
-  volume:''
+  totalPrice: 0,
+  volume:1
 }
 
 const updateChartReducer = (state = initialState, action)=>{

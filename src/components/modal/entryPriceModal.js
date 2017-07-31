@@ -34,8 +34,8 @@ export class entryPriceModal extends Component {
 	        <button onClick={this.handleOpenModal}>Add</button>
 	        <Modal isOpen={this.state.showModal} className="Modal" contentLabel='Price modal'>
                 <form>
-                <input className='input' onChange={this.props.onChange} type= "text" placeholder="Enter Your Entry Price"/>
-                <input className='input' onChange={this.props.onChange} type= "text" placeholder="Enter Your Stock Volume"/>
+                <input className='input' type='number' onChange={this.props.handleEntryPrice} type= "text" placeholder="Enter Your Entry Price"/>
+                <input className='input' type='number' onChange={this.props.handleVolume} type= "text" placeholder="Enter Your Stock Volume"/>
                 </form>
                 <button onClick={this.props.onClick}>Submit Entry</button>
                 <button onClick={this.handleCloseModal}>Close Modal</button>
