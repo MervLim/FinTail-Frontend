@@ -38,7 +38,7 @@ export const localLogin = (credentials) => {
         //notification if needed
       }else {
         console.error("AXIOS CALL: LOGGED IN /auth/login");
-        window.location.href = "/";
+        window.location.href = "/dashboard";
       }
     })
     .catch((error) => {

@@ -31,8 +31,8 @@ class App extends Component {
             atActive={{ opacity: 1 }}
           >
           <Switch key={location.key} location={location}>
-            <Route exact path="/" component={Dashboard}/>
-            <Route exact path="/login" component={LogIn}/>
+            <Route exact path="/" component={LogIn}/>
+            <Route exact path="/dashboard" component={Dashboard}/>
             <Route exact path="/signup" component={SignUp}/>
 
 
