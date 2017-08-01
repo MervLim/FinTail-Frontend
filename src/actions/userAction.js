@@ -7,6 +7,14 @@ const storeUser = (user) => {
   }
 }
 
+const USER_EXIST = (user) => {
+  return {
+    type: 'USER_EXIST',
+    user
+  }
+}
+
+
 export const getUser = () => {
   return (dispatch) => {
     axios.get('/auth/user')
@@ -19,6 +27,7 @@ export const getUser = () => {
       });
   };
 }
+
 export const localLogin = (user) => {
   return (dispatch) => {
     axios.post('/auth/login', user)

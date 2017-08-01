@@ -27,18 +27,21 @@ class App extends Component {
 
     console.log(this.props);
 
-    const PrivateRoute = ( {component: Component, authed, ...rest}) => {
+    const PrivateRoute = ( {component: Component , authed ,...rest}) => {
       console.log(authed.isAuth)
       return (
-        <Route
-          {...rest}
-          render={(props) => authed.isAuth
-            ? <Component {...props} />
-            : <div>no auth</div>}
-          />
-
-      )
-    }
+     <Route {...rest} render={props => (
+          authed.isAuth?
+         <Component {...props}/>
+        : (
+         <Redirect to={{
+           pathname: '/',
+           state: { from: props.location }
+         }} />
+       )
+     )} />
+   )
+ }
 
     return (
       <div className="App">
@@ -52,7 +55,7 @@ class App extends Component {
           <li><Link to="/dashboard">Protected</Link></li>
           </ul>
             <Route exact path="/"  component={LogIn} />
-            <Route exact path="/signup" component={SignUp} history={history}/>
+            <Route path="/signup" component={SignUp} history={history}/>
             <PrivateRoute authed={this.props.user} path='/dashboard' component= {Dashboard} />
             </div>
         );

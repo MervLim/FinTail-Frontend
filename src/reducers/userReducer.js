@@ -9,10 +9,17 @@ const User = (state = {isAuth: false}, action) => {
             }
       break;
 
+    case 'LOGOUT_USER':
+      return {
+        ...state,
+         isAuth:false,
+        user: {}
+      }
     default:
     return state
   }
 }
+
 
 export default User;
 //user:action.user

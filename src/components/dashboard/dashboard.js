@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Search from '../search/search';
 import { connect } from 'react-redux';
 import Stockview from '../stockview/stockview';
@@ -12,10 +13,14 @@ export class dashboard extends Component {
   }
 
   render() {
-    console.log('younare  in dashbaord', this.props)
+    console.log('you are  in dashoard', this.props)
     return (
       <div>
-      <header id='navBar'><p><span>Blood</span>Hound - Your portfolio at a glance</p></header>
+      <header id='navBar'><p><span>Blood</span>Hound - Your portfolio at a glance</p>
+             <Link to ='/'>  <div className="nav-login pull-right" onClick={this.execLogout}>LogOut</div></Link>
+
+      </header>
+
       <Search />
       <div className='dashboard'>
       <p>{this.props.username}</p>
