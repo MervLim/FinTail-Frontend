@@ -13,7 +13,6 @@ export class entryPriceModal extends Component {
     super(props);
     this.state={
       showModal: false
-
     };
   }
 
@@ -37,7 +36,7 @@ export class entryPriceModal extends Component {
                 <input className='input' type='number' onChange={this.props.handleEntryPrice} type= "text" placeholder="Enter Your Entry Price"/>
                 <input className='input' type='number' onChange={this.props.handleVolume} type= "text" placeholder="Enter Your Stock Volume"/>
                 </form>
-                <button onClick={this.props.onClick}>Submit Entry</button>
+                <button onClick={this.props.onClick} name={this.props.symbol}>Submit Entry</button>
                 <button onClick={this.handleCloseModal}>Close Modal</button>
 
 	        </Modal>

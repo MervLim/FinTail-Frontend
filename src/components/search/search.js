@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './search.css';
-import { getStock, searchTerm, getNews, getNewsAndStock }from '../../actions/searchActions';
+import { getStock, searchTerm, getNews, searchResult }from '../../actions/searchActions';
 import { connect } from 'react-redux';
 
 export class search extends Component {
@@ -8,17 +8,10 @@ export class search extends Component {
   onClick = (e) => {
     let result = this.state.searchTerm;
     this.props.changeSearchTerm(result);
-    this.props.getStock(result);
     this.props.getNews(result);
+    this.props.getStock(result);
     // this.props.getNewsAndStock(result);
 
-    // dispatch get stock
-    // update store state
-    // re-render
-    // in stockview
-    // does searchR.stock exist?
-    // if it does, show graph
-    // if not, show something else
   }
 
   onChange = (e) => {
@@ -46,7 +39,6 @@ const mapDispatchToProps = (dispatch) => {
     changeSearchTerm: (text) => { dispatch(searchTerm(text)); },
     getStock: (text) => { dispatch(getStock(text)); },
     getNews: (text) => {dispatch(getNews(text)); },
-    // getNewsAndStock: (text) => {dispatch(getNewsAndStock(text)); }
 
   }
 }

@@ -6,8 +6,7 @@ import thunk from 'redux-thunk';
 export let initStore = () => {
 
   const reducer = combineReducers( {
-      JSONresult: searchReducer,
-      UpdateChart: updateChartReducer
+      JSONresult: searchReducer
   });
 
   const store = createStore( reducer,
