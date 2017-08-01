@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
 import './entryPriceModal.css';
-import {addTotalPrice} from '../../actions/updateChartActions';
+import {addTotalPrice }from '../../actions/searchActions';
 
 
 
