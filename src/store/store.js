@@ -10,7 +10,6 @@ export let initStore = () => {
       JSONresult: searchReducer,
       UpdateChart: updateChartReducer,
       UserReducer: userReducer
-
   });
 
   const store = createStore( reducer,

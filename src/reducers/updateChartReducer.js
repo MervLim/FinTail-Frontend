@@ -1,8 +1,6 @@
 const initialState = {
-  totalPrice: '',
-  volume:'',
-  tickr:'',
-  entryPrice:''
+  totalPrice: 0,
+  volume:1
 }
 
 const updateChartReducer = (state = initialState, action)=>{
@@ -15,14 +13,6 @@ const updateChartReducer = (state = initialState, action)=>{
          ...state,
         totalPrice: action.price,
         volume: action.volume
-       }
-     break;
-
-     case 'STORE_ENTRY_PRICE_TICKR':
-       return {
-         ...state,
-         entryPrice:action.entryPrice,
-         tickr : action.tickr
        }
      break;
 

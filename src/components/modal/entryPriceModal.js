@@ -3,9 +3,8 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
-import *  as addTotalPrice from '../../actions/searchActions';
-
 import './entryPriceModal.css';
+import {addTotalPrice} from '../../actions/updateChartActions';
 
 
 
@@ -37,7 +36,7 @@ export class entryPriceModal extends Component {
                 <input className='input' type='number' onChange={this.props.handleEntryPrice} type= "text" placeholder="Enter Your Entry Price"/>
                 <input className='input' type='number' onChange={this.props.handleVolume} type= "text" placeholder="Enter Your Stock Volume"/>
                 </form>
-                <button onClick={this.props.onClick}>Submit Entry</button>
+                <button onClick={this.props.onClick} name={this.props.symbol}>Submit Entry</button>
                 <button onClick={this.handleCloseModal}>Close Modal</button>
 
 	        </Modal>
