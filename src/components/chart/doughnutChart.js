@@ -5,11 +5,57 @@ import {Doughnut} from 'react-chartjs-2';
 import EntryPriceModal from '../modal/entryPriceModal';
 import uuid from 'uuid';
 import './doughnutChart.css';
+import {updateEntryPrice} from '../../actions/searchActions';
+
+
 
 export class doughnutChart extends Component {
   constructor(props) {
     super(props);
+
+    this.state = ({
+      entryPrice: 0,
+      volume: 0,
+      totalPrice:0
+    })
+
   }
+
+
+
+handleEntryPrice = (e) => {
+  this.state.entryPrice = e.target.value;
+  console.log('e price ' + this.state.entryPrice);
+}
+
+handleVolume = (e) => {
+  this.state.volume = e.target.value;
+  console.log('vol ' + this.state.volume);
+
+}
+
+onClick = (e) => {
+  let stock = this.props.result;
+  let symbol = e.target.name;
+
+
+  let filteredStock = stock.filter((item)=> {
+      const itemSymbol = item['Meta Data']['2. Symbol'];
+      return symbol === itemSymbol;
+  })
+  console.log('filteredStock:', filteredStock[0]['Meta Data']['2. Symbol']);
+  const totalValue = this.state.volume * this.state.entryPrice;
+  Object.defineProperty(filteredStock[0], "stockTotalPrice", {
+    value: totalValue,
+    writable: true,
+    enumerable: true,
+    configurable: true
+});
+  console.log(filteredStock);
+  this.props.updateEntryPrice(filteredStock);
+}
+
+
   renderStock(){
     //Set Date and Time
     let today = new Date();
@@ -32,18 +78,19 @@ CHECK FOR MARKET OPENING
     let stock = this.props.result;
     if(typeof(stock) == "undefined") {
       return
-    } else if (typeof(stock) !== "undefined" && intCurrentTime > 430 && intCurrentTime < 2130){
+    } else if (typeof(stock) !== "undefined"){
+      console.log(this.props.updateEntryPrice.stockTotalPrice);
     //Display Doughnut Chart  If Market is Closed.
     return stock.map((item)=>{
-      item = item[0];
-      let chartData={
+    let chartData = {
          title: item['Meta Data']['2. Symbol'],
          id: uuid.v4(),
-        labels: ["High", "Low"],
+         labels: ["High", "Low"],
          datasets: [{
                 data:[
-                   item['Time Series (1min)'][todayFormat + ' 16:00:00']['1. open'],
-                   item['Time Series (1min)'][todayFormat  + ' 16:00:00']['3. low']
+                   (item['Time Series (1min)']['2017-07-31' + ' 16:00:00']['4. close']),
+                   item.stockTotalPrice
+
                 ],
                 backgroundColor: [
                 '#FF6384',
@@ -59,12 +106,11 @@ CHECK FOR MARKET OPENING
       }
       return (
         <div key={chartData.id} className='doughnutChart'>
-          <EntryPriceModal />
+          <EntryPriceModal symbol={chartData.title} handleEntryPrice={this.handleEntryPrice} handleVolume={this.handleVolume} onClick={this.onClick} />
           {chartData.title}
-
           <Doughnut data={chartData}
-                    width={150}
-                    height={150}
+                    width={120}
+                    height={120}
                     options={{maintainAspectRatio: false}} />
         </div>
       )
@@ -72,8 +118,9 @@ CHECK FOR MARKET OPENING
     } else {
       return stock.map((item)=>{
         item = item[0];
-        let chartData={
-           id: uuid.v4(),
+      let chartData={
+          title: item['Meta Data']['2. Symbol'],
+          id: uuid.v4(),
           labels: ["High", "Low"],
            datasets: [{
                   data:[
@@ -94,9 +141,11 @@ CHECK FOR MARKET OPENING
         }
         return (
           <div key={chartData.id} className='doughnutChart'>
-            <EntryPriceModal />
-            <Doughnut data={chartData}   width={250}
-              height={250}
+            <EntryPriceModal handleEntryPrice={this.handleEntryPrice} handleVolume={this.handleVolume} onClick={this.onClick} />
+            {chartData.title}
+            <Doughnut data={chartData}
+              width={120}
+              height={120}
               options={{maintainAspectRatio: false}}/>
           </div>
         )
@@ -110,6 +159,13 @@ CHECK FOR MARKET OPENING
 const mapStateToProps = (state) => {
   return{
     result: state.JSONresult.result,
+    updateChart: state.JSONresult.stock
   };
 }
-export default connect(mapStateToProps, null)(doughnutChart);
+
+const mapDispatchToProps=(dispatch)=>{
+  return{
+     updateEntryPrice: (stock) => {dispatch(updateEntryPrice(stock));}
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(doughnutChart);

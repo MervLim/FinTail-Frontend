@@ -9,6 +9,8 @@ export const searchTerm = (searchTerm) => {
   };
 }
 
+
+
 export const displayResult = (result) => {
   return {
     type: 'DISPLAY_RESULT',
@@ -24,12 +26,15 @@ export const displayNewsResult = (news) => {
   };
 }
 
-export const storeDashboard = (dashboardArr) => {
+export const updateEntryPrice = (stock) => {
+  console.log(stock);
   return {
-    type: 'STORE_DASHBOARD',
-    dashboardArr
+    type: 'UPDATE_ENTRY_PRICE',
+    stock
   };
 }
+
+
 
 export const getStock = (searchTerm) => {
   console.log('im inside getStock actions')
@@ -37,9 +42,15 @@ export const getStock = (searchTerm) => {
     console.log('im in axios dispatch');
     axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=O4S8KZ7QADUOH6CX')
       .then( (response) => {
-        let stock = [];
-        stock.push(response.data);
-        // console.log(stock);
+        let stock = response.data;
+        // Object.defineProperty(stock, "initialTotalPrice", {
+        //   value: 0,
+        //   writable: true,
+        //   enumerable: true,
+        //   configurable: true
+        //
+        // });
+        console.log(stock);
         dispatch(displayResult(stock));
       })
       .catch((error)=> {
