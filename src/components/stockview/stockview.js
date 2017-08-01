@@ -15,10 +15,8 @@ import axios from 'axios';
 export class stockview extends Component {
   constructor(props) {
     super(props);
+    
     // console.log(this.props.result);
-
-
-
   }
 
 onClick = (e) => {

@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+//import socket io to tie backend with frontend
+
 
 export const searchTerm = (searchTerm) => {
   return {
@@ -40,7 +42,7 @@ export const getStock = (searchTerm) => {
   console.log('im inside getStock actions')
   return (dispatch) => {
     console.log('im in axios dispatch');
-    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=O4S8KZ7QADUOH6CX')
+    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=GQBU0ZPN342PFXI9')
       .then( (response) => {
         let stock = response.data;
         // Object.defineProperty(stock, "initialTotalPrice", {
@@ -59,9 +61,6 @@ export const getStock = (searchTerm) => {
       });
   };
 }
-
-
-
 
 
 export const getNews = (searchTerm) => {
@@ -85,4 +84,31 @@ export const getNews = (searchTerm) => {
 
       });
   };
+}
+
+
+
+export const addTotalPrice = (price, volume) =>{
+  console.log('im inside addTotalPrice actions')
+  return {
+    type: 'ADD_TOTAL_PRICE',
+    price,
+    volume
+  };
+}
+
+
+/*Store Entry Price */
+
+export const postTotalPrice= (price) => {
+  return (dispatch) => {
+    axios.put('/stock/' ,price)
+      .then( (response) => {
+        console.log(response.data);
+          dispatch(addTotalPrice(response.data));
+      })
+      .catch((error)=> {
+        console.error("User Entry Price And Tickr Not Posted in Server")
+      });
+  }
 }

@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import {Doughnut} from 'react-chartjs-2';
 import EntryPriceModal from '../modal/entryPriceModal';
 import uuid from 'uuid';
+import *  as addTotalPrice from '../../actions/searchActions';
 import './doughnutChart.css';
-import {updateEntryPrice} from '../../actions/searchActions';
-
-
 
 export class doughnutChart extends Component {
   constructor(props) {
@@ -15,13 +13,22 @@ export class doughnutChart extends Component {
 
     this.state = ({
       entryPrice: 0,
-      volume: 0,
+      volume: 2,
       totalPrice:0
     })
 
   }
 
-
+addData = (chart, label, data1, data2) => {
+    console.log(chart.data);
+    chart.labels.pop();
+    chart.labels.push(label);
+    chart.datasets.forEach((dataset) => {
+    dataset.data.pop();
+    dataset.data.push(data1);
+    });
+    console.log(chart);
+}
 
 handleEntryPrice = (e) => {
   this.state.entryPrice = e.target.value;
@@ -35,38 +42,26 @@ handleVolume = (e) => {
 }
 
 onClick = (e) => {
-  let stock = this.props.result;
-  let symbol = e.target.name;
-
-
-  let filteredStock = stock.filter((item)=> {
-      const itemSymbol = item['Meta Data']['2. Symbol'];
-      return symbol === itemSymbol;
-  })
-  console.log('filteredStock:', filteredStock[0]['Meta Data']['2. Symbol']);
-  const totalValue = this.state.volume * this.state.entryPrice;
-  Object.defineProperty(filteredStock[0], "stockTotalPrice", {
-    value: totalValue,
-    writable: true,
-    enumerable: true,
-    configurable: true
-});
-  console.log(filteredStock);
-  this.props.updateEntryPrice(filteredStock);
+  this.addData(this.chartData, 'heyyyyy', 12);
+  let totalPrice = this.state.entryPrice * this.state.volume;
+  this.props.updateEntryPrice(totalPrice, parseInt(this.state.volume));
 }
 
 
   renderStock(){
     //Set Date and Time
+
     let today = new Date();
-    const dd = today.getDate()-1;
+    let myDate = today.format();
+    console.log("myDate");
+    const dd = today.getDate();
     const dd2 = today.getDate();
     const mm = today.getMonth()+1; //January is 0!
     const yyyy = today.getFullYear();
     const dateCombine = yyyy+'-'+mm+'-'+dd;
     const dateCombine2 = yyyy+'-'+mm+'-'+dd2;
-    let todayFormat =  moment(dateCombine).format('YYYY-MM-DD');
-    let todayFormat2 =  moment(dateCombine2).format('YYYY-MM-DD');
+    let todayFormat =  moment(dateCombine).formatDate('YYYY-MM-DD');
+    let todayFormat2 =  moment(dateCombine2).forma('YYYY-MM-DD');
     const hours = today.getHours();
     const mins = today.getMinutes();
     const currentTime = String(hours) + String(mins);
@@ -79,18 +74,16 @@ CHECK FOR MARKET OPENING
     if(typeof(stock) == "undefined") {
       return
     } else if (typeof(stock) !== "undefined"){
-      console.log(this.props.updateEntryPrice.stockTotalPrice);
     //Display Doughnut Chart  If Market is Closed.
     return stock.map((item)=>{
-    let chartData = {
+      item = item[0];
+    this.chartData = {
          title: item['Meta Data']['2. Symbol'],
-         id: uuid.v4(),
+           id: this.chartData.title,
          labels: ["High", "Low"],
          datasets: [{
                 data:[
-                   (item['Time Series (1min)']['2017-07-31' + ' 16:00:00']['4. close']),
-                   item.stockTotalPrice
-
+                   (item['Time Series (1min)']['2017-07-28' + ' 16:00:00']['4. close']),
                 ],
                 backgroundColor: [
                 '#FF6384',
@@ -105,12 +98,12 @@ CHECK FOR MARKET OPENING
          }]
       }
       return (
-        <div key={chartData.id} className='doughnutChart'>
-          <EntryPriceModal symbol={chartData.title} handleEntryPrice={this.handleEntryPrice} handleVolume={this.handleVolume} onClick={this.onClick} />
-          {chartData.title}
-          <Doughnut data={chartData}
-                    width={120}
-                    height={120}
+        <div key={this.chartData.id} className='doughnutChart'>
+          <EntryPriceModal handleEntryPrice={this.handleEntryPrice} handleVolume={this.handleVolume} onClick={this.onClick} />
+          {this.chartData.title}
+          <Doughnut data={this.chartData}
+                    width={150}
+                    height={150}
                     options={{maintainAspectRatio: false}} />
         </div>
       )
@@ -144,8 +137,8 @@ CHECK FOR MARKET OPENING
             <EntryPriceModal handleEntryPrice={this.handleEntryPrice} handleVolume={this.handleVolume} onClick={this.onClick} />
             {chartData.title}
             <Doughnut data={chartData}
-              width={120}
-              height={120}
+              width={250}
+              height={250}
               options={{maintainAspectRatio: false}}/>
           </div>
         )
@@ -155,17 +148,18 @@ CHECK FOR MARKET OPENING
   render() {
     return (<div>{this.renderStock()}</div>);
   }
+
 }
 const mapStateToProps = (state) => {
   return{
     result: state.JSONresult.result,
-    updateChart: state.JSONresult.stock
+    updateChart: state.UpdateChart
   };
 }
 
 const mapDispatchToProps=(dispatch)=>{
   return{
-     updateEntryPrice: (stock) => {dispatch(updateEntryPrice(stock));}
+     updateEntryPrice: (totalPrice, volume) => {dispatch(addTotalPrice(totalPrice, volume));}
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(doughnutChart);
