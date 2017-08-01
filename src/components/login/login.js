@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
-
 import { localLogin } from '../../actions/userAction';
 
 // import css
@@ -11,13 +10,13 @@ import './login.css';
 class login extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       username:"",
       email: "",
       password: ""
     }
   }
+
   onChange = (e) => {
     let state = this.state;
     let key = e.target.name;
@@ -29,20 +28,14 @@ class login extends Component {
   }
 
   localLogin = (e) => {
-    if (this.state.email == "" || this.state.password == "") {
-    e.preventDefault();
-    } else {
-      this.props.Login(this.state);
-    }
+    this.props.loginUser(this.state)
+     console.log("click");
+     console.log(this.state);
   }
 
   enterKeyPress = (e) => {
     if(e.charCode==13){
-      if (this.state.email == "" || this.state.password == "") {
-      e.preventDefault();
-      } else {
-        this.props.Login(this.state);
-      }
+       this.props.loginUser(this.state);
     }
   }
 
@@ -68,14 +61,15 @@ class login extends Component {
 const mapStateToProps = (state) => {
 
   return {
-    user : state.user
+    user : state.UserReducer
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-     Login: (credentials) => {dispatch(localLogin(credentials));},
+     loginUser: (user) => {dispatch(localLogin(user));}
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(login);

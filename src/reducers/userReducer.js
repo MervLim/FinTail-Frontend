@@ -1,8 +1,12 @@
-const User = (state = {}, action) => {
+const User = (state = {isAuth: false}, action) => {
   switch (action.type) {
 
     case 'STORE_USER':
-      return action.user || {}
+      return {
+        ...state,
+        user: action.user,
+        isAuth: true
+            }
       break;
 
     default:
@@ -11,3 +15,4 @@ const User = (state = {}, action) => {
 }
 
 export default User;
+//user:action.user

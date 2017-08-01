@@ -7,50 +7,36 @@ const storeUser = (user) => {
   }
 }
 
-
-const loadingUserError = (error) => {
-  return{
-    type: 'LOADING_USER_ERROR',
-    error
-  }
-}
-
 export const getUser = () => {
   return (dispatch) => {
     axios.get('/auth/user')
-    .then( (response) => {
-      dispatch(storeUser(response.data));
-    })
-    .catch((error) => {
-      dispatch(loadingUserError(error));
-    })
-  }
+      .then( (response) => {
+        const user = response.data;
+        dispatch(storeUser(user));
+      })
+      .catch((error)=> {
+        console.error("AJAX: Could not get user @ '/auth/user'")
+      });
+  };
+}
+export const localLogin = (user) => {
+  return (dispatch) => {
+    axios.post('/auth/login', user)
+      .then( (response) => {
+        const data = response.data;
+        dispatch(storeUser(data));
+      })
+      .catch((error)=> {
+        console.error("AJAX: Could not get user @ '/auth/user'")
+      });
+  };
 }
 
-export const localLogin = (credentials) => {
-  return(dispatch) => {
-    axios.post('/auth/login', credentials)
-    .then((response) => {
-      const data = response.data;
 
-      if(data.error){
-        console.log(data.message);
-        //notification if needed
-      }else {
-        console.error("AXIOS CALL: LOGGED IN /auth/login");
-        window.location.href = "/dashboard";
-      }
-    })
-    .catch((error) => {
-      console.error("AXIOS CALL ERROR: Logged on '/auth/login");
-      console.log(error);
-    });
-  }
-}
 
-export const localSignup = (credentials) => {
+export const localSignup = (user) => {
   return(dispatch) => {
-    axios.post('/auth/signup', credentials)
+    axios.post('/auth/signup', user)
     .then((response) => {
       const data = response.data;
       if(data.error){
@@ -58,7 +44,6 @@ export const localSignup = (credentials) => {
       //Notification if needed
       }else {
         console.error("AXIOS CALL:LOCAL SIGNUP '/auth/user'");
-        window.location.href = "/";
       }
     })
     .catch((error) => {
