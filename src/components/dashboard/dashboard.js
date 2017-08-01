@@ -20,7 +20,6 @@ export class dashboard extends Component {
              <Link to ='/'>  <div className="nav-login pull-right" onClick={this.execLogout}>LogOut</div></Link>
 
       </header>
-
       <Search />
       <div className='dashboard'>
       <p>{this.props.username}</p>

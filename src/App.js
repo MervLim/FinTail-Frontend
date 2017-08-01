@@ -26,7 +26,7 @@ class App extends Component {
   render() {
 
     console.log(this.props);
-
+    const isLoggedIn = this.props.user.isSignedIn;
     const PrivateRoute = ( {component: Component , authed ,...rest}) => {
       console.log(authed.isAuth)
       return (
@@ -46,6 +46,7 @@ class App extends Component {
     return (
       <div className="App">
       <Router>
+      <Switch>
       <Route render={({location, history, match}) => {
         console.log(this.props)
         return (
@@ -54,13 +55,15 @@ class App extends Component {
           <li><Link to="/">Public</Link></li>
           <li><Link to="/dashboard">Protected</Link></li>
           </ul>
-            <Route exact path="/"  component={LogIn} />
+          <Route exact path="/signup" render= {() => (
+              authed.isAuth ? ( <Redirect to="/dashboard"/> ) : ( <Signup/> )
+           )} />
             <Route path="/signup" component={SignUp} history={history}/>
             <PrivateRoute authed={this.props.user} path='/dashboard' component= {Dashboard} />
             </div>
         );
         }}/>
-
+    </Switch>
     </Router>
     </div>
     );

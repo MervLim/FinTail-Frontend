@@ -7,13 +7,19 @@ const storeUser = (user) => {
   }
 }
 
-const USER_EXIST = (user) => {
+const USER_EXISTS= (user) => {
   return {
     type: 'USER_EXIST',
     user
   }
 }
 
+const USER_AUTH_FAIL = (error) =>{
+  return{
+    type:'USER_AUTH_FAIL',
+    error
+  }
+}
 
 export const getUser = () => {
   return (dispatch) => {
