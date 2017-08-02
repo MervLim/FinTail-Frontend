@@ -4,14 +4,21 @@ import Search from '../search/search';
 import { connect } from 'react-redux';
 import Stockview from '../stockview/stockview';
 import Networth from '../networth/networth';
+import {getDashboard} from '../../actions/userAction'
 import './dashboard.css'
 
 
 export class dashboard extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      lineChart:{},
+      doughnutChart:{}
+    }
   }
-
+  componentDidMount() {
+    getDashboard();
+  }
   render() {
     console.log('you are  in dashoard', this.props)
     return (
@@ -35,10 +42,16 @@ export class dashboard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.UserReducer
+    user: state.UserReducer,
+
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getDashboard:(doughnutChart,lineChart)=>{dispatch(getDashboard(doughnutChart,lineChart));},
   }
 }
 
 
 
-export default connect(mapStateToProps, null)(dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(dashboard);

@@ -88,7 +88,7 @@ CHECK FOR MARKET OPENING
          labels: ["High", "Low"],
          datasets: [{
                 data:[
-                   (item['Time Series (1min)']['2017-07-31' + ' 16:00:00']['4. close']),
+                   (item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['4. close']),
                    item.stockTotalPrice
 
                 ],

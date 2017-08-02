@@ -30,7 +30,6 @@ export class lineChart extends Component {
     } else if (typeof(stock) !== "undefined"){
       console.log('im hitting else if!');
       return stock.map((item) => {
-        console.log(item['Time Series (1min)']['2017-07-31' + ' 14:45:00']['1. open']);
         let chartData = {
            id: uuid.v4(),
            labels: ['0930H','1000H','1030H', '1100H', '1130H', '1200H', '1230H', '1300H', '1330H', '1400H', '1430', '1500', '1530', '1600H'],
@@ -53,21 +52,21 @@ export class lineChart extends Component {
                 //  item['Time Series (1min)'][todayFormat + ' 15:50:00']['4. close'],
                 //  item['Time Series (1min)'][todayFormat + ' 15:55:00']['4. close'],
                 //  item['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']
-                 item['Time Series (1min)']['2017-07-31' + ' 14:45:00']['1. open'],
-                 item['Time Series (1min)']['2017-07-31' + ' 14:50:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 14:55:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:00:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:10:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:15:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:20:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:25:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:30:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:35:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:40:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:45:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:50:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 15:55:00']['4. close'],
-                 item['Time Series (1min)']['2017-07-31' + ' 16:00:00']['4. close']
+                 item['Time Series (1min)']['2017-08-01' + ' 14:45:00']['1. open'],
+                 item['Time Series (1min)']['2017-08-01' + ' 14:50:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 14:55:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:00:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:10:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:15:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:20:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:25:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:30:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:35:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:40:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:45:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:50:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 15:55:00']['4. close'],
+                 item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['4. close']
                ],
                backgroundColor:[
                  'rgba(0, 0, 0, 0)'
@@ -79,9 +78,9 @@ export class lineChart extends Component {
       return (
         <div key={chartData.id} className='line-chart'>
         <span className='title'>{item['Meta Data']['2. Symbol']} - {todayFormat}</span>
-        {item['Time Series (1min)']['2017-07-31' + ' 16:00:00']['2. high']}
-        {item['Time Series (1min)']['2017-07-31' + ' 16:00:00']['4. close']}
-        {item['Time Series (1min)']['2017-07-31' + ' 16:00:00']['3. low']}
+        {item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['2. high']}
+        {item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['4. close']}
+        {item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['3. low']}
         <p><Line data ={chartData}
                  width={100}
                  height={400}

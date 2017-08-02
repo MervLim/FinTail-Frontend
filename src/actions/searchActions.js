@@ -7,7 +7,6 @@ export const searchTerm = (searchTerm) => {
   return {
     type: 'SEARCH_TERM',
     searchTerm
-
   };
 }
 
@@ -102,7 +101,7 @@ export const addTotalPrice = (price, volume) =>{
 
 export const postTotalPrice= (price) => {
   return (dispatch) => {
-    axios.put('/stock/' ,price)
+    axios.post('/' ,price)
       .then( (response) => {
         console.log(response.data);
           dispatch(addTotalPrice(response.data));

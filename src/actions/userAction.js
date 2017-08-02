@@ -7,18 +7,36 @@ const storeUser = (user) => {
   }
 }
 
-const USER_EXISTS= (user) => {
+const userExist= (user) => {
   return {
     type: 'USER_EXIST',
     user
   }
 }
 
-const USER_AUTH_FAIL = (error) =>{
+const userAuthError = (error) =>{
   return{
-    type:'USER_AUTH_FAIL',
+    type:'USER_AUTH_ERROR',
     error
   }
+}
+const userDashboard= (user) =>{
+  return{
+    type:'GET_DASHBOARD',
+    user
+  }
+}
+export const getDashboard = (doughnutChart,lineChart)=>{
+  return (dispatch) => {
+    axios.get('/auth/dashboard:_id')
+      .then( (response) => {
+        const chart = response.data;
+        dispatch(userDashboard(chart));
+      })
+      .catch((error)=> {
+        console.error("AXIOS: Unable to getDashboard for Particular User")
+      });
+  };
 }
 
 export const getUser = () => {
