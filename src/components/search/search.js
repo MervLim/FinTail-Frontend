@@ -1,24 +1,26 @@
 import React, {Component} from 'react';
 import './search.css';
-import { getStock, searchTerm, getNews, getNewsAndStock }from '../../actions/searchActions';
+import { getStock, searchTerm, getNews, searchResult }from '../../actions/searchActions';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 export class search extends Component {
 
   onClick = (e) => {
     let result = this.state.searchTerm;
     this.props.changeSearchTerm(result);
-    this.props.getStock(result);
     this.props.getNews(result);
-    // this.props.getNewsAndStock(result);
-
-    // dispatch get stock
-    // update store state
-    // re-render
-    // in stockview
-    // does searchR.stock exist?
-    // if it does, show graph
-    // if not, show something else
+    this.props.getStock(result);
+    console.log("UserProps" ,this.props.user.user._id);
+    axios.post('/preference/stock/' + this.props.user.user._id ,result,{
+       searchTerm : result
+    })
+      .then(function (response){
+        console.log(response);
+      })
+      .catch(function(error){
+        console.log(error);
+      });
   }
 
   onChange = (e) => {
@@ -39,16 +41,19 @@ export class search extends Component {
       </div>);
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    user: state.UserReducer
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeSearchTerm: (text) => { dispatch(searchTerm(text)); },
     getStock: (text) => { dispatch(getStock(text)); },
     getNews: (text) => {dispatch(getNews(text)); },
-    // getNewsAndStock: (text) => {dispatch(getNewsAndStock(text)); }
 
   }
 }
 
-export default connect(null, mapDispatchToProps)(search);
+export default connect(mapStateToProps, mapDispatchToProps)(search);

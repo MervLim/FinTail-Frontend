@@ -21,6 +21,15 @@
   font-weight: bolder;
 }
 
+.nav-login {
+  color: red;
+  font-family: 'Roboto Slab';
+  font-size: 20px;
+  margin-top: 35px;
+  margin-right: 20%;
+}
+
+
 .dashboard {
   /*width: 90%;
   border: 1px solid #E1DDDC;

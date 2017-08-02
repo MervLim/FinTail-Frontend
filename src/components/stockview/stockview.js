@@ -15,15 +15,12 @@ import axios from 'axios';
 export class stockview extends Component {
   constructor(props) {
     super(props);
+    
     // console.log(this.props.result);
-
-
-
   }
 
 onClick = (e) => {
-  this.state.dashboardArr.push(this.props.result);
-  this.state.dashboardArr.push(this.props.newsResult);
+
 
 }
 
@@ -31,7 +28,6 @@ onClick = (e) => {
   render() {
     return (
       <div className='stockView'>
-        <button type='button' id='btnAddPreference' onClick={this.onClick}>Add to dashboard</button>
         <div><LineChart /></div>
         <div id='doughnutChart'><DoughnutChart /></div>
         <NewsFeed />

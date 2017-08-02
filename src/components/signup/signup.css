@@ -1,0 +1,23 @@
+.signup-field {
+  display: block;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: 18px;
+  padding: 10px;
+  border: solid 1px #efeded;
+  transition: box-shadow 0.3s, border 0.3s;
+  border-radius: 2px;
+}
+
+
+#username {
+  margin-top: 0px;
+}
+#re-password {
+  margin-bottom: -20px;
+}
+
+#email,#password {
+  margin-top: 20px;
+}

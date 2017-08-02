@@ -1,11 +1,9 @@
 import axios from 'axios';
 
-
 export const searchTerm = (searchTerm) => {
   return {
     type: 'SEARCH_TERM',
     searchTerm
-
   };
 }
 
@@ -24,22 +22,24 @@ export const displayNewsResult = (news) => {
   };
 }
 
-export const storeDashboard = (dashboardArr) => {
+export const updateEntryPrice = (stock) => {
+  console.log(stock);
   return {
-    type: 'STORE_DASHBOARD',
-    dashboardArr
+    type: 'UPDATE_ENTRY_PRICE',
+    stock
   };
 }
+
+
 
 export const getStock = (searchTerm) => {
   console.log('im inside getStock actions')
   return (dispatch) => {
     console.log('im in axios dispatch');
-    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=O4S8KZ7QADUOH6CX')
+    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=GQBU0ZPN342PFXI9')
       .then( (response) => {
-        let stock = [];
-        stock.push(response.data);
-        // console.log(stock);
+        let stock = response.data;
+        console.log(stock);
         dispatch(displayResult(stock));
       })
       .catch((error)=> {
@@ -48,9 +48,6 @@ export const getStock = (searchTerm) => {
       });
   };
 }
-
-
-
 
 
 export const getNews = (searchTerm) => {
@@ -74,4 +71,30 @@ export const getNews = (searchTerm) => {
 
       });
   };
+}
+
+
+
+export const addTotalPrice = (price, volume) =>{
+  console.log('im inside addTotalPrice actions')
+  return {
+    type: 'ADD_TOTAL_PRICE',
+    price,
+    volume
+  };
+}
+
+
+/*Doughnut add entry price*/
+export const postTotalPrice= (price) => {
+  return (dispatch) => {
+    axios.post('/' ,price)
+      .then( (response) => {
+        console.log(response.data);
+          dispatch(addTotalPrice(response.data));
+      })
+      .catch((error)=> {
+        console.error("User Entry Price And Tickr Not Posted in Server")
+      });
+  }
 }
