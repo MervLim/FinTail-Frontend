@@ -20,24 +20,7 @@ const userAuthError = (error) =>{
     error
   }
 }
-const userDashboard= (user) =>{
-  return{
-    type:'GET_DASHBOARD',
-    user
-  }
-}
-export const getDashboard = (doughnutChart,lineChart)=>{
-  return (dispatch) => {
-    axios.get('/auth/dashboard:_id')
-      .then( (response) => {
-        const chart = response.data;
-        dispatch(userDashboard(chart));
-      })
-      .catch((error)=> {
-        console.error("AXIOS: Unable to getDashboard for Particular User")
-      });
-  };
-}
+
 
 export const getUser = () => {
   return (dispatch) => {

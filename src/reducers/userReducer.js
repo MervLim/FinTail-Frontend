@@ -1,13 +1,4 @@
-const initialState = {
-  isAuth: false,
-  user: {},
-  lineChart:{},
-  doughnutChart:[],
-  networthChart:[]
-}
-
-
-const User = (state = initialState, action) => {
+const User = (state = {isAuth: false}, action) => {
   switch (action.type) {
 
     case 'STORE_USER':
@@ -15,7 +6,7 @@ const User = (state = initialState, action) => {
         ...state,
         user: action.user,
         isAuth: true
-      }
+            }
       break;
 
     case 'LOGOUT_USER':
@@ -24,12 +15,6 @@ const User = (state = initialState, action) => {
          isAuth:false,
         user: {}
       }
-    case 'GET_DASHBOARD':
-     return {
-       ...state,
-       doughnutChart: action.user.doughnutChart,
-       lineChart: action.user.lineChart
-     }
     default:
     return state
   }

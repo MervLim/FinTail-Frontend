@@ -1,16 +1,11 @@
 import axios from 'axios';
 
-//import socket io to tie backend with frontend
-
-
 export const searchTerm = (searchTerm) => {
   return {
     type: 'SEARCH_TERM',
     searchTerm
   };
 }
-
-
 
 export const displayResult = (result) => {
   return {
@@ -44,13 +39,6 @@ export const getStock = (searchTerm) => {
     axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=GQBU0ZPN342PFXI9')
       .then( (response) => {
         let stock = response.data;
-        // Object.defineProperty(stock, "initialTotalPrice", {
-        //   value: 0,
-        //   writable: true,
-        //   enumerable: true,
-        //   configurable: true
-        //
-        // });
         console.log(stock);
         dispatch(displayResult(stock));
       })
@@ -97,8 +85,7 @@ export const addTotalPrice = (price, volume) =>{
 }
 
 
-/*Store Entry Price */
-
+/*Doughnut add entry price*/
 export const postTotalPrice= (price) => {
   return (dispatch) => {
     axios.post('/' ,price)

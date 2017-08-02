@@ -28,19 +28,19 @@ class login extends Component {
   }
 
   localLogin = (e) => {
-    this.props.LoginUser(this.state)
-
+    this.props.loginUser(this.state)
+     console.log("click");
+     console.log(this.state);
   }
 
   enterKeyPress = (e) => {
     if(e.charCode==13){
-       this.props.LoginUser(this.state);
+       this.props.loginUser(this.state);
     }
   }
 
 
   render() {
-  
     return (
       <div className="container">
         <div className='login-form'>
@@ -67,7 +67,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-     LoginUser: (user) => {dispatch(localLogin(user));}
+     loginUser: (user) => {dispatch(localLogin(user));}
   }
 }
 

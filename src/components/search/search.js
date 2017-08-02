@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './search.css';
 import { getStock, searchTerm, getNews, searchResult }from '../../actions/searchActions';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 export class search extends Component {
 
@@ -10,8 +11,16 @@ export class search extends Component {
     this.props.changeSearchTerm(result);
     this.props.getNews(result);
     this.props.getStock(result);
-    // this.props.getNewsAndStock(result);
-
+    console.log("UserProps" ,this.props.user.user._id);
+    axios.post('/preference/stock/' + this.props.user.user._id ,result,{
+       searchTerm : result
+    })
+      .then(function (response){
+        console.log(response);
+      })
+      .catch(function(error){
+        console.log(error);
+      });
   }
 
   onChange = (e) => {
@@ -32,7 +41,11 @@ export class search extends Component {
       </div>);
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    user: state.UserReducer
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -43,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(search);
+export default connect(mapStateToProps, mapDispatchToProps)(search);
