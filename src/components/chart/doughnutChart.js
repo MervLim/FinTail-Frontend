@@ -50,7 +50,20 @@ onClick = (e) => {
     writable: true,
     enumerable: true,
     configurable: true
-});
+  });
+  Object.defineProperty(filteredStock[0], "stockVolume", {
+    value: this.state.volume,
+    writable: true,
+    enumerable: true,
+    configurable: true
+  });
+  Object.defineProperty(filteredStock[0], "entryPrice", {
+    value: this.state.entryPrice,
+    writable: true,
+    enumerable: true,
+    configurable: true
+   });
+
   console.log(filteredStock);
   this.props.updateEntryPrice(filteredStock);
 }
