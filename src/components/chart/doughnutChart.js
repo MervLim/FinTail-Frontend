@@ -45,12 +45,12 @@ onClick = (e) => {
   })
   console.log('filteredStock:', filteredStock[0]['Meta Data']['2. Symbol']);
   const totalValue = this.state.volume * this.state.entryPrice;
-  Object.defineProperty(filteredStock[0], "stockTotalPrice", {
+  `Object.defineProperty(filteredStock[0], "stockTotalPrice", {
     value: totalValue,
     writable: true,
     enumerable: true,
     configurable: true
-});
+});`
   console.log(filteredStock);
   this.props.updateEntryPrice(filteredStock);
 }
