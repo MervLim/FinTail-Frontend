@@ -1,0 +1,20 @@
+.newsFeed {
+  width: 80%;
+  display: inline-block;
+  overflow: scroll;
+  height: 400px;
+  vertical-align: top;
+  font-family: 'Roboto Slab';
+  font-size: 14px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.newsFeedBorder {
+  border-bottom: 1px solid #545454;
+  width: 60%;
+  margin-bottom: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
