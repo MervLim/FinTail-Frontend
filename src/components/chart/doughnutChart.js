@@ -5,23 +5,17 @@ import {Doughnut} from 'react-chartjs-2';
 import EntryPriceModal from '../modal/entryPriceModal';
 import uuid from 'uuid';
 import './doughnutChart.css';
-import {updateEntryPrice} from '../../actions/searchActions';
-
-
+import {updateUserPreference} from '../../actions/searchActions';
 
 export class doughnutChart extends Component {
   constructor(props) {
     super(props);
-
     this.state = ({
       entryPrice: 0,
       volume: 0,
       totalPrice:0
     })
-
   }
-
-
 
 handleEntryPrice = (e) => {
   this.state.entryPrice = e.target.value;
@@ -37,8 +31,6 @@ handleVolume = (e) => {
 onClick = (e) => {
   let stock = this.props.result;
   let symbol = e.target.name;
-
-
   let filteredStock = stock.filter((item)=> {
       const itemSymbol = item['Meta Data']['2. Symbol'];
       return symbol === itemSymbol;
@@ -50,22 +42,22 @@ onClick = (e) => {
     writable: true,
     enumerable: true,
     configurable: true
-  });
-  Object.defineProperty(filteredStock[0], "stockVolume", {
+});
+
+Object.defineProperty(filteredStock[0], "stockVolume", {
     value: this.state.volume,
     writable: true,
     enumerable: true,
     configurable: true
-  });
+});
   Object.defineProperty(filteredStock[0], "entryPrice", {
     value: this.state.entryPrice,
     writable: true,
     enumerable: true,
     configurable: true
-   });
-
+});
   console.log(filteredStock);
-  this.props.updateEntryPrice(filteredStock);
+  this.props.updateEntryPrice(filteredStock, this.props.user.user._id);
 }
 
 
@@ -101,9 +93,8 @@ CHECK FOR MARKET OPENING
          labels: ["High", "Low"],
          datasets: [{
                 data:[
-                   (item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['4. close']),
-                   item.stockTotalPrice
-
+                   (item['Time Series (1min)']['2017-08-02' + ' 11:00:00']['4. close']),
+                   item.entryPrice
                 ],
                 backgroundColor: [
                 '#FF6384',
@@ -172,13 +163,13 @@ CHECK FOR MARKET OPENING
 const mapStateToProps = (state) => {
   return{
     result: state.JSONresult.result,
-    updateChart: state.JSONresult.stock
+    user: state.UserReducer
   };
 }
 
 const mapDispatchToProps=(dispatch)=>{
   return{
-     updateEntryPrice: (stock) => {dispatch(updateEntryPrice(stock));}
+     updateEntryPrice: (stock) => {dispatch(updateUserPreference(stock));}
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(doughnutChart);

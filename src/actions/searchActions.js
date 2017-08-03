@@ -11,7 +11,6 @@ export const displayResult = (result) => {
   return {
     type: 'DISPLAY_RESULT',
     result
-
   };
 }
 
@@ -28,6 +27,28 @@ export const updateEntryPrice = (stock) => {
     type: 'UPDATE_ENTRY_PRICE',
     stock
   };
+}
+
+export const deleteUserPreference = (result) =>{
+  console.log('im inside addTotalPrice actions')
+  return {
+    type: 'DELETE_USER_PREFERENCE',
+    result
+  };
+}
+
+export const deleteUserPreferenceAjax =(preference)=>{
+  console.log('i am inside deleteUserPreferenceAjax');
+  return (dispatch) => {
+    axios.delete('/stock/:id' ,preference)
+      .then( (response) => {
+        console.log(response.data);
+          dispatch(deleteUserPreference(response.data));
+      })
+      .catch((error)=> {
+        console.error("User Entry Price And Tickr Not Posted in Server")
+      });
+  }
 }
 
 
@@ -73,8 +94,6 @@ export const getNews = (searchTerm) => {
   };
 }
 
-
-
 export const addTotalPrice = (price, volume) =>{
   console.log('im inside addTotalPrice actions')
   return {
@@ -84,6 +103,14 @@ export const addTotalPrice = (price, volume) =>{
   };
 }
 
+export const updateUserPreference = (price, volume) =>{
+  console.log('im inside addTotalPrice actions')
+  return {
+    type: 'ADD_TOTAL_PRICE',
+    price,
+    volume
+  };
+}
 
 /*Doughnut add entry price*/
 export const postTotalPrice= (price) => {

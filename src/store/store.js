@@ -11,11 +11,9 @@ export let initStore = () => {
       UpdateChart: updateChartReducer,
       UserReducer: userReducer
   });
-
-  const store = createStore( reducer,
+    const store = createStore( reducer,
     compose(applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
-
   return store;
 }

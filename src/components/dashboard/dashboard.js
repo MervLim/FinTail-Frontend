@@ -20,7 +20,6 @@ execLogout(){
       <div>
       <header id='navBar'><p><span>Blood</span>Hound - Your portfolio at a glance</p>
              <button>  <div className="nav-login pull-right" onClick={this.execLogout}>LogOut</div></button>
-
       </header>
       <Search />
       <div className='dashboard'>
@@ -28,9 +27,7 @@ execLogout(){
       <Stockview />
       <Networth />
       </div>
-
       </div>
-
     );
   }
 }

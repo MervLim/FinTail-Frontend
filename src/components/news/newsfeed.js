@@ -6,7 +6,7 @@ import uuid from 'uuid';
 import axios from 'axios';
 
 
- class newsfeed extends Component {
+class newsfeed extends Component {
   constructor(props) {
     super(props);
   }

@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
-import './entryPriceModal.css';
+
 import {addTotalPrice }from '../../actions/searchActions';
-
-
+import './entryPriceModal.css';
 
 export class entryPriceModal extends Component {
   constructor(props) {
@@ -23,8 +21,6 @@ export class entryPriceModal extends Component {
   handleCloseModal = () => {
     this.setState({showModal: false});
   }
-
-
 
 
 	render () {

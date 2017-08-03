@@ -36,9 +36,7 @@ componentDidMount(){
       searchTerm: result,
     })
     console.log(result)
-
   }
-
 
   render() {
     return (

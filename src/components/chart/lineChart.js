@@ -37,36 +37,36 @@ export class lineChart extends Component {
              {
                label: item['Meta Data']['2. Symbol'],
                data:[
-                //  item['Time Series (1min)'][todayFormat + ' 14:45:00']['1. open'],
-                //  item['Time Series (1min)'][todayFormat + ' 14:50:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 14:55:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:00:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:10:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:15:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:20:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:25:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:30:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:35:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:40:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:45:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:50:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:55:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']
-                 item['Time Series (1min)']['2017-08-01' + ' 14:45:00']['1. open'],
-                 item['Time Series (1min)']['2017-08-01' + ' 14:50:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 14:55:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:00:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:10:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:15:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:20:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:25:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:30:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:35:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:40:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:45:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:50:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:55:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['4. close']
+                 item['Time Series (1min)'][todayFormat + ' 14:45:00']['1. open'],
+                 item['Time Series (1min)'][todayFormat + ' 14:50:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 14:55:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:00:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:10:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:15:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:20:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:25:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:30:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:35:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:40:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:45:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:50:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 15:55:00']['4. close'],
+                 item['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:25:00']['1. open'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:30:00']['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:35:00']['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close'],
+                //  item['Time Series (1min)']['2017-08-02 ' + '14:40:00' + ':00' ]['4. close']
                ],
                backgroundColor:[
                  'rgba(0, 0, 0, 0)'
@@ -78,9 +78,9 @@ export class lineChart extends Component {
       return (
         <div key={chartData.id} className='line-chart'>
         <span className='title'>{item['Meta Data']['2. Symbol']} - {todayFormat}</span>
-        {item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['2. high']}
-        {item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['4. close']}
-        {item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['3. low']}
+        {item['Time Series (1min)']['2017-08-02 ' + currentTimeOneTwoFormat + ':00']['2. high']}
+        {item['Time Series (1min)']['2017-08-02 ' + currentTimeOneTwoFormat + ':00']['4. close']}
+        {item['Time Series (1min)']['2017-08-02 ' + currentTimeOneTwoFormat + ':00']['3. low']}
         <p><Line data ={chartData}
                  width={100}
                  height={400}
@@ -122,7 +122,7 @@ export class lineChart extends Component {
            }]
        }
        console.log(chartData)
-    return (
+     return (
       <div key={chartData.id} className='line-chart '>
       <span className='title'>{item['Meta Data']['2. Symbol']} - {todayFormat}</span>
       {item['Time Series (1min)'][todayFormat + ' 16:00:00']['2. high']}

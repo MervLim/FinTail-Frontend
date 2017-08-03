@@ -6,7 +6,6 @@ const storeUser = (user) => {
     user
   }
 }
-
 const userExist= (user) => {
   return {
     type: 'USER_EXIST',
@@ -27,6 +26,7 @@ const userAuthError = (error) =>{
     error
   }
 }
+
 
 export const getUser = () => {
   return (dispatch) => {
@@ -55,8 +55,6 @@ export const localLogin = (user, history) => {
       });
   };
 }
-
-
 
 export const localSignup = (user) => {
   return(dispatch) => {
