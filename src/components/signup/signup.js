@@ -16,7 +16,8 @@ class signup extends Component {
         username: "",
         email: "",
         password: ""
-      }
+      },
+      repassword:""
     }
   }
 
@@ -32,22 +33,22 @@ class signup extends Component {
 
   localSignup = (e) => {
     console.log(this.state.user);
-    if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.RePassword == "" || this.state.contact == "") {
-    //ADD NOTIFICATION
+    if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.rePassword == "") {
+
       e.preventDefault();
-    } else {
-    //ADD NOTIFICATION
-    this.props.Signup(this.state.user);
+    } else if(this.state.password == this.state.repassword){
+        this.props.Signup(this.state.user);
     }
   }
 
   enterKeyPress = (e) => {
     if(e.charCode==13){
       console.log(this.state.user);
-      if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.RePassword == "" || this.state.contact == "") {
-      //ADD NOTIFICATION
-      } else {
-      //ADD NOTIFICATION
+      if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.rePassword == "") {
+
+        e.preventDefault();
+      } else if(this.state.password == this.state.repassword){
+          this.props.Signup(this.state.user);
       }
     }
   }
@@ -85,7 +86,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    Signup: (user) => {dispatch(localSignup(user));},
+    Signup: (user,history) => {dispatch(localSignup(user,history));},
   }
 }
 
