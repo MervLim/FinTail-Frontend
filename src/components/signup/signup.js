@@ -56,21 +56,19 @@ class signup extends Component {
 
   render() {
     return (
-      <div className="signup">
-        <div className='login-form'>
-          <p>Sign up</p>
-          <hr/>
+      <div className="container">
+        <div className='signup-form'>
+        <h1 className='pull-center'>Bloodhound</h1>
+        <h3 className='pull-center'>The One stop Finance Planner</h3>
           <input type="text" name="username" className='signup-field' id="username" placeholder="User Name" onChange={this.onChange}/>
           <input type="email" name="email" className='signup-field' id="email" placeholder="Email Address" onChange={this.onChange}/>
           <input type="password" name="password" className='signup-field' id="password" placeholder="Password" onChange={this.onChange}/>
           <input type="password" name="repassword" className='signup-field'id="re-password" placeholder="Re-Enter Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
+          <button className="signup-btn" onClick={this.localSignup}>Sign up</button>
+
+          <Link to='/'><button className="signup-btn" onClick={this.onChange}>Back</button></Link>
 
 
-          <button className="LoginBtn" onClick={this.localSignup}>Sign up</button>
-          <hr/>
-          <Link to='/'><button className="SignUpBtn" onClick={this.onChange}>Home</button></Link>
-          <Link to='/login'><button className="BackBtn" onClick={this.onChange}>Back</button></Link>
-          <hr/>
         </div>
       </div>
     );

@@ -44,15 +44,15 @@ class login extends Component {
     return (
       <div className="container">
         <div className='login-form'>
-          <p className='pull-center'>FinTail</p>
+          <h1 className='pull-center'>Bloodhound</h1>
+          <h3 className='pull-center'>The One stop Finance Planner</h3>
            <p>{this.props.username}</p>
           <input type="email" name="email" id="email" className='login-field' placeholder="Email Address" onChange={this.onChange} />
           <input type="password" name="password" id="password" className='login-field' placeholder="Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
+
            <button className="button-login" onClick={this.localLogin}> Log in </button>
-           <p class="text--center">Not a member? <Link to='/signup'><button className="button-signup"  onClick={this.onChange}>Sign Up</button></Link> </p>
-          <Link to='/signup'><button className="button-signup"  onClick={this.onChange}>Sign Up</button></Link>
-          <Link to='/'><button onClick={this.onChange}>{'Back to home'}</button></Link>
-          <hr/>
+           <p class="text--center">Not a member?</p>
+           <Link to='/signup'><button className="button-signup"  onClick={this.onChange}>Sign Up</button></Link>
         </div>
       </div>
     );
