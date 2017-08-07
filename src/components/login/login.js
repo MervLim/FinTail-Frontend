@@ -16,7 +16,6 @@ class login extends Component {
       password: ""
     }
   }
-
   onChange = (e) => {
     let state = this.state;
     let key = e.target.name;
@@ -28,9 +27,10 @@ class login extends Component {
   }
 
   localLogin = (e) => {
-    this.props.loginUser(this.state)
+    this.props.loginUser(this.state,this.props.history)
      console.log("click");
      console.log(this.state);
+
   }
 
   enterKeyPress = (e) => {
@@ -43,15 +43,17 @@ class login extends Component {
   render() {
     return (
       <div className="container">
+      <header id='navBar'><p><span>Blood</span>Hound - Your portfolio at a glance</p>
+      </header>
         <div className='login-form'>
-          <p className='pull-center'>FinTail</p>
+          <h1 className='pull-center'>Login Here!</h1><br />
            <p>{this.props.username}</p>
           <input type="email" name="email" id="email" className='login-field' placeholder="Email Address" onChange={this.onChange} />
           <input type="password" name="password" id="password" className='login-field' placeholder="Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
-          <button onClick={this.localLogin}>Log in</button>
-          <Link to='/signup'><button  onClick={this.onChange}>Sign Up</button></Link>
-          <Link to='/'><button onClick={this.onChange}>{'Back to home'}</button></Link>
-          <hr/>
+
+           <button className="button-login" onClick={this.localLogin}> Log in </button>
+           <p class="text--center">Not a member?</p>
+           <Link to='/signup'><button className="button-login"  onClick={this.onChange}>Sign Up</button></Link>
         </div>
       </div>
     );
@@ -66,8 +68,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+
   return {
-     loginUser: (user) => {dispatch(localLogin(user));}
+     loginUser: (user, history) => {dispatch(localLogin(user, history));}
   }
 }
 

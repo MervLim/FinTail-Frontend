@@ -8,6 +8,7 @@ export class lineChart extends Component {
   constructor(props) {
     super(props);
   }
+
   renderStock(){
     let today = new Date();
     const dd = today.getDate()-1;
@@ -17,6 +18,7 @@ export class lineChart extends Component {
     const dateCombine = yyyy+'-'+mm+'-'+dd;
     const dateCombine2 = yyyy+'-'+mm+'-'+dd2;
     let todayFormat =  moment(dateCombine).format('YYYY-MM-DD');
+    let titleToday =   moment(dateCombine).format('DD/MM/YYYY');
     let todayFormat2 =  moment(dateCombine2).format('YYYY-MM-DD');
     const hours = today.getHours();
     const mins = today.getMinutes();
@@ -24,7 +26,7 @@ export class lineChart extends Component {
     const currentTimeOneTwoFormat = String(hours - 12) + ':' + String(mins);
     const intCurrentTime = parseInt(currentTime);
     let stock = this.props.result;
-    console.log(intCurrentTime);
+
     if(typeof(stock) == "undefined") {
       return
     } else if (typeof(stock) !== "undefined"){
@@ -37,55 +39,42 @@ export class lineChart extends Component {
              {
                label: item['Meta Data']['2. Symbol'],
                data:[
-                //  item['Time Series (1min)'][todayFormat + ' 14:45:00']['1. open'],
-                //  item['Time Series (1min)'][todayFormat + ' 14:50:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 14:55:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:00:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:10:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:15:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:20:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:25:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:30:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:35:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:40:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:45:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:50:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 15:55:00']['4. close'],
-                //  item['Time Series (1min)'][todayFormat + ' 16:00:00']['4. close']
-                 item['Time Series (1min)']['2017-08-01' + ' 14:45:00']['1. open'],
-                 item['Time Series (1min)']['2017-08-01' + ' 14:50:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 14:55:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:00:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:10:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:15:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:20:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:25:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:30:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:35:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:40:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:45:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:50:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 15:55:00']['4. close'],
-                 item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['4. close']
+                 item['Time Series (30min)']['2017-08-02 10:00:00']['4. close'],
+                 item['Time Series (30min)']['2017-08-02 10:00:00']['4. close'],
+                 item['Time Series (30min)']['2017-08-02 10:00:00']['4. close'],
+                 item['Time Series (30min)']['2017-08-02 10:30:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 11:00:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 11:30:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 12:00:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 12:30:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 13:00:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 13:30:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 14:00:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 14:30:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 15:00:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 15:30:00' ]['4. close'],
+                 item['Time Series (30min)']['2017-08-02 16:00:00' ]['4. close'],
+
                ],
                backgroundColor:[
                  'rgba(0, 0, 0, 0)'
                ],
                pointBorderWidth: 3,
+               borderColor: '#5C99EF'
              }]
          }
          console.log(chartData)
       return (
         <div key={chartData.id} className='line-chart'>
-        <span className='title'>{item['Meta Data']['2. Symbol']} - {todayFormat}</span>
-        {item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['2. high']}
-        {item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['4. close']}
-        {item['Time Series (1min)']['2017-08-01' + ' 16:00:00']['3. low']}
-        <p><Line data ={chartData}
-                 width={100}
+        <span className='symbolTitle'>{item['Meta Data']['2. Symbol']} - {titleToday}</span>
+        <div className='price'>Open: {parseFloat(Math.round(item['Time Series (30min)']['2017-08-02 16:00:00']['1. open'] * 100) / 100).toFixed(2)}</div>
+        <div className='price'>High: {parseFloat(Math.round(item['Time Series (30min)']['2017-08-02 16:00:00']['2. high'] * 100) / 100).toFixed(2)}</div>
+        <div className='price'>Low: {parseFloat(Math.round(item['Time Series (30min)']['2017-08-02 16:00:00']['3. low'] * 100) / 100).toFixed(2)}</div>
+        <div id='chart'><Line data ={chartData}
+                 width={60}
                  height={400}
                  options={{maintainAspectRatio: false}}
-        /></p>
+        /></div>
       </div>)
       })
   } else {

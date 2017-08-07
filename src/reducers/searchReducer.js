@@ -46,7 +46,6 @@ const searchReducer = (state = initialState, action) =>{
     return {
       ...state,
       stock: action.stock
-      // news: action.news
     }
     break;
 

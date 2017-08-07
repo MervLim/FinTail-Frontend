@@ -36,7 +36,7 @@ export const getStock = (searchTerm) => {
   console.log('im inside getStock actions')
   return (dispatch) => {
     console.log('im in axios dispatch');
-    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=1min&apikey=GQBU0ZPN342PFXI9')
+    axios.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol='+searchTerm+'&interval=30min&apikey=GQBU0ZPN342PFXI9')
       .then( (response) => {
         let stock = response.data;
         console.log(stock);
@@ -56,8 +56,8 @@ export const getNews = (searchTerm) => {
     console.log('im in axios dispatch');
     axios.get('https://api.intrinio.com/news?identifier=' + searchTerm,{
       auth: {
-        username:"42f36889b38b7b775f37ee2e859908ea",
-        password: "5062df3517649e48a878d8ac6046dfcc"
+        username:"8b7a23202198544d700701c368f70b33",
+        password: "efba0961ecad8ed67106e07468537d8e"
       }
     })
       .then( (response) => {
@@ -73,28 +73,19 @@ export const getNews = (searchTerm) => {
   };
 }
 
+export const updateUserPreference = (result, id) => {
 
-
-export const addTotalPrice = (price, volume) =>{
-  console.log('im inside addTotalPrice actions')
-  return {
-    type: 'ADD_TOTAL_PRICE',
-    price,
-    volume
-  };
-}
-
-
-/*Doughnut add entry price*/
-export const postTotalPrice= (price) => {
   return (dispatch) => {
-    axios.post('/' ,price)
+    dispatch(updateEntryPrice(result));
+    console.log('im in axios dispatch');
+    axios.post('/preference/update/'+id, result)
       .then( (response) => {
-        console.log(response.data);
-          dispatch(addTotalPrice(response.data));
+        console.log('pre dispatch!!!')
+
       })
       .catch((error)=> {
-        console.error("User Entry Price And Tickr Not Posted in Server")
+        console.error("AJAX: Could not update user DB")
+
       });
-  }
+  };
 }

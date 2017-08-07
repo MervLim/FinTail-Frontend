@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LineChart from '../chart/lineChart';
 import DoughnutChart from '../chart/doughnutChart';
 import NewsFeed from '../newsfeed/newsfeed';
+import Networth from '../networth/networth';
 import './stockview.css';
 import {Bar, Line} from 'react-chartjs-2';
 import moment from 'moment';
@@ -15,22 +16,21 @@ import axios from 'axios';
 export class stockview extends Component {
   constructor(props) {
     super(props);
-    
+
     // console.log(this.props.result);
   }
 
-onClick = (e) => {
 
-
-}
 
 
   render() {
     return (
       <div className='stockView'>
+        <div className='title'><p>News</p>
+        <div id='newsFeed'><NewsFeed />
+        </div></div>
         <div><LineChart /></div>
         <div id='doughnutChart'><DoughnutChart /></div>
-        <NewsFeed />
       </div>
     );
   }

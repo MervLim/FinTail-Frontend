@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ReactDOM from 'react-dom';
 import './entryPriceModal.css';
-import {addTotalPrice }from '../../actions/searchActions';
 
 
 
@@ -30,14 +29,14 @@ export class entryPriceModal extends Component {
 	render () {
 	    return (
 	      <div>
-	        <button onClick={this.handleOpenModal}>Add</button>
+	        <button onClick={this.handleOpenModal}>Add Price & Volume</button>
 	        <Modal isOpen={this.state.showModal} className="Modal" contentLabel='Price modal'>
                 <form>
                 <input className='input' type='number' onChange={this.props.handleEntryPrice} type= "text" placeholder="Enter Your Entry Price"/>
                 <input className='input' type='number' onChange={this.props.handleVolume} type= "text" placeholder="Enter Your Stock Volume"/>
                 </form>
                 <button onClick={this.props.onClick} name={this.props.symbol}>Submit Entry</button>
-                <button onClick={this.handleCloseModal}>Close Modal</button>
+                <button onClick={this.handleCloseModal}>Close</button>
 
 	        </Modal>
 	      </div>
@@ -45,9 +44,5 @@ export class entryPriceModal extends Component {
 	  }
 	}
 
-const mapDispatchToProps=(dispatch)=>{
-  return{
-     updateEntryPrice: (totalPrice, volume) => {dispatch(addTotalPrice(totalPrice, volume));}
-  }
-}
-export default connect(null,mapDispatchToProps)(entryPriceModal);
+
+export default entryPriceModal;

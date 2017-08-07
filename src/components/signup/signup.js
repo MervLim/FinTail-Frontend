@@ -16,7 +16,8 @@ class signup extends Component {
         username: "",
         email: "",
         password: ""
-      }
+      },
+      repassword:""
     }
   }
 
@@ -32,22 +33,22 @@ class signup extends Component {
 
   localSignup = (e) => {
     console.log(this.state.user);
-    if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.RePassword == "" || this.state.contact == "") {
-    //ADD NOTIFICATION
+    if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.rePassword == "") {
+
       e.preventDefault();
-    } else {
-    //ADD NOTIFICATION
-    this.props.Signup(this.state.user);
+    } else if(this.state.password == this.state.repassword){
+        this.props.Signup(this.state.user);
     }
   }
 
   enterKeyPress = (e) => {
     if(e.charCode==13){
       console.log(this.state.user);
-      if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.RePassword == "" || this.state.contact == "") {
-      //ADD NOTIFICATION
-      } else {
-      //ADD NOTIFICATION
+      if (this.state.username == "" || this.state.email == "" || this.state.password == "" || this.state.rePassword == "") {
+
+        e.preventDefault();
+      } else if(this.state.password == this.state.repassword){
+          this.props.Signup(this.state.user);
       }
     }
   }
@@ -55,21 +56,20 @@ class signup extends Component {
 
   render() {
     return (
-      <div className="signup">
-        <div className='login-form'>
-          <p>Sign up</p>
-          <hr/>
-          <input type="text" name="username" className='signup-field' id="username" placeholder="User Name" onChange={this.onChange}/>
+      <div className="container">
+      <header id='navBar'><p><span>Blood</span>Hound - Your portfolio at a glance</p>
+      </header>
+        <div className='signup-form'>
+        <h1 className='pull-center'>Sign Up Here!</h1><br />
+          <input type="text" name="username" className='signup-field' id="username" placeholder="Name" onChange={this.onChange}/>
           <input type="email" name="email" className='signup-field' id="email" placeholder="Email Address" onChange={this.onChange}/>
           <input type="password" name="password" className='signup-field' id="password" placeholder="Password" onChange={this.onChange}/>
           <input type="password" name="repassword" className='signup-field'id="re-password" placeholder="Re-Enter Password" onChange={this.onChange} onKeyPress={this.enterKeyPress}/>
+          <Link to='/'><button className="signup-btn" onClick={this.localSignup}>Sign up</button></Link>
+
+          <Link to='/'><button className="signup-btn" onClick={this.onChange}>Back</button></Link>
 
 
-          <button className="LoginBtn" onClick={this.localSignup}>Sign up</button>
-          <hr/>
-          <Link to='/'><button className="SignUpBtn" onClick={this.onChange}>Home</button></Link>
-          <Link to='/login'><button className="BackBtn" onClick={this.onChange}>Back</button></Link>
-          <hr/>
         </div>
       </div>
     );
@@ -85,7 +85,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    Signup: (user) => {dispatch(localSignup(user));},
+    Signup: (user,history) => {dispatch(localSignup(user,history));},
   }
 }
 
