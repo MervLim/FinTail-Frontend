@@ -14,19 +14,13 @@ const userExist= (user) => {
   }
 }
 
-const userLoginSuccessfully=(user)=>{
-  return {
-    type: 'USER_LOGIN_SUCCESS',
-    user
-  }
-}
-
 const userAuthError = (error) =>{
   return{
     type:'USER_AUTH_ERROR',
     error
   }
 }
+
 
 export const getUser = () => {
   return (dispatch) => {
@@ -41,14 +35,12 @@ export const getUser = () => {
   };
 }
 
-export const localLogin = (user, history) => {
+export const localLogin = (user) => {
   return (dispatch) => {
     axios.post('/auth/login', user)
       .then( (response) => {
         const data = response.data;
-        dispatch(userLoginSuccessfully(data))
         dispatch(storeUser(data));
-        history.push('/dashboard');
       })
       .catch((error)=> {
         console.error("AJAX: Could not get user @ '/auth/user'")

@@ -11,15 +11,13 @@ export class dashboard extends Component {
   constructor(props) {
     super(props);
   }
-execLogout(){
-  window.location.href = "/"
-}
+
   render() {
     console.log('you are  in dashoard', this.props)
     return (
       <div>
       <header id='navBar'><p><span>Blood</span>Hound - Your portfolio at a glance</p>
-             <button>  <div className="nav-login pull-right" onClick={this.execLogout}>LogOut</div></button>
+             <Link to ='/'>  <div className="nav-login pull-right" onClick={this.execLogout}>LogOut</div></Link>
 
       </header>
       <Search />
