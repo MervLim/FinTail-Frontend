@@ -2,9 +2,11 @@
 
 Bloodhound is a finanical tracker that we planned to use .
 
-#Contributers
+#Contributers 
+
 Merv
 happypill
+
 ### Tech
 
 * React
